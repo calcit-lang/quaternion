@@ -1,31 +1,44 @@
+## Quaternion Math for Calcit
 
-Calcit Workflow
-----
+TODO.
 
-> running in both Calcit and Calcit-js, with hot code reload.
+Function names are boring since Calcit lacks performance polymorphism. You might want [Quaternion in Rust](https://github.com/Quatrefoil-GL/quaternions/).
 
 ### Usages
 
-Install [Calcit](https://github.com/calcit-lang/calcit) to run demo:
+In `quaternion.core`:
 
-```bash
-cr -1 # run once
+Complex math:
 
-cr # run and watch
-```
+- `&c*`
+- `&c+`
+- `&c-`
+- `c-conjutate`
+- `c-length`
+- `c-length2`
 
-run tests:
+Vector:
 
-```bash
-cr -1 --entry test
-```
+- `&v+`
+- `&v-`
+- `v+`
+- `v-`
+- `v-scale`
 
-run test in JavaScript:
+Quaternion math:
 
-```bash
-cr --emit-js -1 --entry test # emit-js once
-node main.mjs # run code
-```
+- `&q*`
+- `&q+`
+- `&q-`
+- `q+`
+- `q-`
+- `q-conjugate`
+- `q-inverse`
+- `q-length`
+- `q-length2`
+- `q-scale`
+
+> Notice: Quaternion in this library looks like `[] x y z w` since original usage was in three.js .
 
 ### Workflow
 
