@@ -1,6 +1,6 @@
 
 {} (:package |quaternion)
-  :configs $ {} (:init-fn |quaternion.test/main!) (:reload-fn |quaternion.test/reload!) (:version |0.0.1)
+  :configs $ {} (:init-fn |quaternion.test/main!) (:reload-fn |quaternion.test/reload!) (:version |0.0.2)
     :modules $ [] |calcit-test/
   :entries $ {}
     :test $ {} (:init-fn |quaternion.test/main!) (:reload-fn |quaternion.test/reload!)
@@ -121,22 +121,39 @@
               fn (acc x) (&v- acc x)
         |v-scale $ quote
           defn v-scale (v n)
-            let[] (x y z w) v $ [] (&* n x) (&* n y) (&* n z)
-              &* n $ either w 0
+            case-default (count v)
+              raise $ str "\"unknown vector: " v
+              4 $ let[] (x y z w) v
+                [] (&* n x) (&* n y) (&* n z) (&* n w)
+              3 $ let[] (x y z) v
+                [] (&* n x) (&* n y) (&* n z)
+              2 $ let[] (x y) v
+                [] (&* n x) (&* n y)
       :ns $ quote (ns quaternion.core)
     |quaternion.test $ {}
       :defs $ {}
         |main! $ quote
           defn main! () $ run-tests
         |reload! $ quote
-          defn reload! () $ println "\"TODO reload"
+          defn reload! () (println "\"reload...") (run-tests)
         |run-tests $ quote
-          defn run-tests () (reset! *quit-on-failure? true) (test-add)
+          defn run-tests () (reset! *quit-on-failure? true) (test-add) (test-v-scale)
         |test-add $ quote
           deftest test-add $ testing |add
             is $ = ([] 12 30 24 -60)
               &q* ([] 2 3 4 1) ([] 6 7 8 5)
+        |test-v-scale $ quote
+          deftest test-v-scale $ testing |v-scale
+            is $ =
+              v-scale ([] 1 2) 3
+              [] 3 6
+            is $ =
+              v-scale ([] 1 2 3) 4
+              [] 4 8 12
+            is $ =
+              v-scale ([] 1 2 3 4) 5
+              [] 5 10 15 20
       :ns $ quote
         ns quaternion.test $ :require
           calcit-test.core :refer $ deftest testing is *quit-on-failure?
-          quaternion.core :refer $ &q*
+          quaternion.core :refer $ &q* v-scale
