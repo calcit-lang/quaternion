@@ -24,6 +24,9 @@ Vector:
 - `v+`
 - `v-`
 - `v-scale`
+- `v-cross`
+- `v-dot`
+- `v-normalize`
 
 Quaternion math:
 

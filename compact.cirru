@@ -1,6 +1,6 @@
 
 {} (:package |quaternion)
-  :configs $ {} (:init-fn |quaternion.test/main!) (:reload-fn |quaternion.test/reload!) (:version |0.0.2)
+  :configs $ {} (:init-fn |quaternion.test/main!) (:reload-fn |quaternion.test/reload!) (:version |0.0.3)
     :modules $ [] |calcit-test/
   :entries $ {}
     :test $ {} (:init-fn |quaternion.test/main!) (:reload-fn |quaternion.test/reload!)
@@ -119,6 +119,35 @@
           defn v- (& xs)
             foldl (rest xs) (first xs)
               fn (acc x) (&v- acc x)
+        |v-cross $ quote
+          defn v-cross (v1 v2)
+            let-sugar
+                  [] x1 y1 z1
+                  , v1
+                ([] x2 y2 z2) v2
+              []
+                &- (&* y1 z2) (&* y2 z1)
+                &- (&* x2 z1) (&* x1 z2)
+                &- (&* x1 y2) (&* x2 y1)
+        |v-dot $ quote
+          defn v-dot (v1 v2)
+            let-sugar
+                  [] x1 y1 z1
+                  , v1
+                ([] x2 y2 z2) v2
+              + (&* x1 x2) (&* y1 y2) (&* z1 z2)
+        |v-length $ quote
+          defn v-length (a)
+            let-sugar
+                  [] x y z
+                  , a
+              sqrt $ + (pow x 2) (pow y 2) (pow z 2)
+        |v-normalize $ quote
+          defn v-normalize (v)
+            let[] (x y z) v $ let
+                length $ sqrt
+                  + (&* x x) (&* y y) (&* z z)
+              v-scale v $ / 1 length
         |v-scale $ quote
           defn v-scale (v n)
             case-default (count v)
