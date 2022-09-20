@@ -1,7 +1,7 @@
 {
   "version": "0.0.3",
   "dependencies": {
-    "@calcit/procs": "^0.6.2"
+    "@calcit/procs": "^0.6.5"
   },
   "scripts": {},
   "devDependencies": {}
