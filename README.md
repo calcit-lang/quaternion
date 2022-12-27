@@ -13,9 +13,12 @@ Complex math:
 - `&c*`
 - `&c+`
 - `&c-`
-- `c-conjutate`
+- `c+`
+- `c*`
+- `c-conjugate`
 - `c-length`
 - `c-length2`
+- `c-scale`
 
 Vector:
 
