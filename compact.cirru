@@ -1,6 +1,6 @@
 
 {} (:package |quaternion)
-  :configs $ {} (:init-fn |quaternion.test/main!) (:reload-fn |quaternion.test/reload!) (:version |0.0.3)
+  :configs $ {} (:init-fn |quaternion.test/main!) (:reload-fn |quaternion.test/reload!) (:version |0.0.4)
     :modules $ [] |calcit-test/
   :entries $ {}
     :test $ {} (:init-fn |quaternion.test/main!) (:reload-fn |quaternion.test/reload!)
@@ -15,15 +15,15 @@
                   , a
                 ([] x1 y1) b
               []
-                - (* x0 x1) (* y0 y1)
-                + (* x0 y1) (* x1 y0)
+                &- (&* x0 x1) (&* y0 y1)
+                &+ (&* x0 y1) (&* x1 y0)
         |&c+ $ quote
           defn &c+ (a b)
             let-sugar
                   [] x0 y0
                   , a
                 ([] x1 y1) b
-              [] (+ x0 x1) (+ y0 y1)
+              [] (&+ x0 x1) (&+ y0 y1)
         |&c- $ quote
           defn &c- (a b)
             let-sugar
@@ -60,14 +60,14 @@
                   [] x y z w
                   , a
                 ([] x1 y1 z1 w1) b
-              [] (+ x x1) (+ y y1) (+ z z1) (+ w w1)
+              [] (&+ x x1) (&+ y y1) (&+ z z1) (&+ w w1)
         |&q- $ quote
           defn &q- (a b)
             let-sugar
                   [] x y z w
                   , a
                 ([] x1 y1 z1 w1) b
-              [] (- x x1) (- y y1) (- z z1) (- w w1)
+              [] (&- x x1) (&- y y1) (&- z z1) (&- w w1)
         |&v+ $ quote
           defn &v+ (a b)
             let[] (x y z) a $ let[] (x2 y2 z2) b
@@ -76,16 +76,27 @@
           defn &v- (a b)
             let[] (x y z) a $ let[] (x2 y2 z2) b
               [] (&- x x2) (&- y y2) (&- z z2)
+        |c* $ quote
+          defn c* (& xs)
+            foldl (rest xs) (first xs)
+              fn (acc x) (&c* acc x)
+        |c+ $ quote
+          defn c+ (& xs)
+            foldl (rest xs) (first xs)
+              fn (acc x) (&c+ acc x)
         |c-conjutate $ quote
           defn c-conjutate (a)
             let[] (x y) a $ [] (&- 0 x) w
         |c-length $ quote
           defn c-length (v)
             let[] (x y) v $ js/Math.sqrt
-              + (js/Math.pow x 2) (js/Math.pow y 2)
+              &+ (js/Math.pow x 2) (js/Math.pow y 2)
         |c-length2 $ quote
           defn c-length2 (v)
-            let[] (x y) v $ + (js/Math.pow x 2) (js/Math.pow y 2)
+            let[] (x y) v $ &+ (js/Math.pow x 2) (js/Math.pow y 2)
+        |c-scale $ quote
+          defn c-scale (v n)
+            let[] (x y) v $ [] (&* n x) (&* n y)
         |q+ $ quote
           defn q+ (& xs)
             foldl xs ([] 0 0 0 0)
@@ -166,11 +177,25 @@
         |reload! $ quote
           defn reload! () (println "\"reload...") (run-tests)
         |run-tests $ quote
-          defn run-tests () (reset! *quit-on-failure? true) (test-add) (test-v-scale)
+          defn run-tests () (reset! *quit-on-failure? true) (test-add) (test-v-scale) (test-multiply)
         |test-add $ quote
-          deftest test-add $ testing |add
-            is $ = ([] 12 30 24 -60)
-              &q* ([] 2 3 4 1) ([] 6 7 8 5)
+          deftest test-add
+            testing "|add quaternion" $ is
+              = ([] 12 30 24 -60)
+                &q* ([] 2 3 4 1) ([] 6 7 8 5)
+            testing "\"add complex"
+              is $ = ([] 9 12)
+                c+ ([] 1 2) ([] 3 4) ([] 5 6)
+              is $ = ([] 4 6)
+                c+ ([] 1 2) ([] 3 4)
+        |test-multiply $ quote
+          deftest test-multiply $ testing "\"multiply complex"
+            is $ = ([] -5 10)
+              &c* ([] 1 2) ([] 3 4)
+            is $ = ([] -5 10)
+              c* ([] 1 2) ([] 3 4)
+            is $ = ([] -85 20)
+              c* ([] 1 2) ([] 3 4) ([] 5 6)
         |test-v-scale $ quote
           deftest test-v-scale $ testing |v-scale
             is $ =
@@ -182,7 +207,10 @@
             is $ =
               v-scale ([] 1 2 3 4) 5
               [] 5 10 15 20
+            is $ =
+              c-scale ([] 1 2) 3
+              [] 3 6
       :ns $ quote
         ns quaternion.test $ :require
           calcit-test.core :refer $ deftest testing is *quit-on-failure?
-          quaternion.core :refer $ &q* v-scale
+          quaternion.core :refer $ &q* v-scale c+ c* &c* c-scale
