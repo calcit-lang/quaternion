@@ -161,7 +161,7 @@
                   |b $ {} (:at 1658490540128) (:by |u0) (:text |b) (:type :leaf)
               |j $ {} (:at 1658491111089) (:by |u0) (:type :expr)
                 :data $ {}
-                  |T $ {} (:at 1658491111089) (:by |u0) (:text |noted) (:type :leaf)
+                  |T $ {} (:at 1687541232367) (:by |u0) (:text |doc-fn) (:type :leaf)
                   |b $ {} (:at 1658491111089) (:by |u0) (:text "|\"w placed at last element") (:type :leaf)
               |l $ {} (:at 1658490540128) (:by |u0) (:type :expr)
                 :data $ {}

@@ -32,7 +32,7 @@
                 ([] x1 y1) b
               [] (- x0 x1) (- y0 y1)
         |&q* $ quote
-          defn &q* (a b) (noted "\"w placed at last element")
+          defn &q* (a b) (doc-fn "\"w placed at last element")
             let-sugar
                   [] x1 y1 z1 w1
                   , a
