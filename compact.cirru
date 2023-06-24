@@ -1,6 +1,6 @@
 
 {} (:package |quaternion)
-  :configs $ {} (:init-fn |quaternion.test/main!) (:reload-fn |quaternion.test/reload!) (:version |0.0.4)
+  :configs $ {} (:init-fn |quaternion.test/main!) (:reload-fn |quaternion.test/reload!) (:version |0.0.6)
     :modules $ [] |calcit-test/
   :entries $ {}
     :test $ {} (:init-fn |quaternion.test/main!) (:reload-fn |quaternion.test/reload!)
@@ -30,7 +30,7 @@
                   [] x0 y0
                   , a
                 ([] x1 y1) b
-              [] (- x0 x1) (- y0 y1)
+              [] (&- x0 x1) (&- y0 y1)
         |&q* $ quote
           defn &q* (a b) (doc-fn "\"w placed at last element")
             let-sugar
@@ -89,11 +89,11 @@
             let[] (x y) a $ [] (&- 0 x) w
         |c-length $ quote
           defn c-length (v)
-            let[] (x y) v $ js/Math.sqrt
-              &+ (js/Math.pow x 2) (js/Math.pow y 2)
+            let[] (x y) v $ sqrt
+              &+ (&* x x) (&* y y)
         |c-length2 $ quote
           defn c-length2 (v)
-            let[] (x y) v $ &+ (js/Math.pow x 2) (js/Math.pow y 2)
+            let[] (x y) v $ &+ (&* x x) (&* y y)
         |c-scale $ quote
           defn c-scale (v n)
             let[] (x y) v $ [] (&* n x) (&* n y)
@@ -110,15 +110,23 @@
             let[] (x y z w) a $ [] (&- 0 x) (&- 0 y) (&- 0 z) w
         |q-inverse $ quote
           defn q-inverse (a)
-            q-scale (q-conjugate a)
-              &/ 1 $ q-length2 a
+            let
+                l $ q-length2 a
+              if (&= l 0) (eprintln "\"length is zero:" a)
+              q-scale (q-conjugate a) (&/ 1 l)
         |q-length $ quote
           defn q-length (a)
             let[] (x y z w) a $ sqrt
-              + (pow x 2) (pow y 2) (pow z 2) (pow w 2)
+              -> (&* x x)
+                &+ $ &* y y
+                &+ $ &* z z
+                &+ $ &* w w
         |q-length2 $ quote
           defn q-length2 (a)
-            let[] (x y z w) a $ + (pow x 2) (pow y 2) (pow z 2) (pow w 2)
+            let[] (x y z w) a $ -> (&* x x)
+              &+ $ &* y y
+              &+ $ &* z z
+              &+ $ &* w w
         |q-scale $ quote
           defn q-scale (v n)
             let[] (x y z w) v $ [] (&* n x) (&* n y) (&* n z) (&* n w)
@@ -146,19 +154,26 @@
                   [] x1 y1 z1
                   , v1
                 ([] x2 y2 z2) v2
-              + (&* x1 x2) (&* y1 y2) (&* z1 z2)
+              -> (&* x1 x2)
+                &+ $ &* y1 y2
+                &+ $ &* z1 z2
         |v-length $ quote
           defn v-length (a)
             let-sugar
                   [] x y z
                   , a
-              sqrt $ + (pow x 2) (pow y 2) (pow z 2)
+              sqrt $ -> (&* x x)
+                &+ $ &* y y
+                &+ $ &* z z
         |v-normalize $ quote
           defn v-normalize (v)
             let[] (x y z) v $ let
                 length $ sqrt
-                  + (&* x x) (&* y y) (&* z z)
-              v-scale v $ / 1 length
+                  -> (&* x x)
+                    &+ $ &* y y
+                    &+ $ &* z z
+              if (&= length 0) (eprintln "\"Unexpected zero length:" length)
+              v-scale v $ &/ 1 length
         |v-scale $ quote
           defn v-scale (v n)
             case-default (count v)
