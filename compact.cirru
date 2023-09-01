@@ -1,12 +1,12 @@
 
 {} (:package |quaternion)
-  :configs $ {} (:init-fn |quaternion.test/main!) (:reload-fn |quaternion.test/reload!) (:version |0.0.7)
+  :configs $ {} (:init-fn |quaternion.test/main!) (:reload-fn |quaternion.test/reload!) (:version |0.0.8)
     :modules $ [] |calcit-test/
   :entries $ {}
     :test $ {} (:init-fn |quaternion.test/main!) (:reload-fn |quaternion.test/reload!)
       :modules $ [] |calcit-test/
   :files $ {}
-    |quaternion.core $ {}
+    |quaternion.core $ %{} :FileEntry
       :defs $ {}
         |&c* $ %{} :CodeEntry (:doc |)
           :code $ quote
@@ -36,7 +36,7 @@
                 [] (&- x0 x1) (&- y0 y1)
         |&q* $ %{} :CodeEntry (:doc |)
           :code $ quote
-            defn &q* (a b) (doc-fn "\"w placed at last element")
+            defn &q* (a b)
               let-sugar
                     [] x1 y1 z1 w1
                     , a
@@ -214,7 +214,7 @@
                   [] (&* n x) (&* n y)
       :ns $ %{} :CodeEntry (:doc |)
         :code $ quote (ns quaternion.core)
-    |quaternion.test $ {}
+    |quaternion.test $ %{} :FileEntry
       :defs $ {}
         |main! $ %{} :CodeEntry (:doc |)
           :code $ quote
