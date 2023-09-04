@@ -1,12 +1,12 @@
 
 {} (:package |quaternion)
-  :configs $ {} (:init-fn |quaternion.test/main!) (:port 6001) (:reload-fn |quaternion.test/reload!) (:version |0.0.7)
+  :configs $ {} (:init-fn |quaternion.test/main!) (:port 6001) (:reload-fn |quaternion.test/reload!) (:version |0.0.8)
     :modules $ [] |calcit-test/
   :entries $ {}
     :test $ {} (:init-fn |quaternion.test/main!) (:reload-fn |quaternion.test/reload!)
       :modules $ [] |calcit-test/
   :files $ {}
-    |quaternion.core $ {}
+    |quaternion.core $ %{} :FileEntry
       :defs $ {}
         |&c* $ %{} :CodeEntry (:doc |)
           :code $ %{} :Expr (:at 1658490540128) (:by |u0)
@@ -162,10 +162,6 @@
                 :data $ {}
                   |T $ %{} :Leaf (:at 1658490540128) (:by |u0) (:text |a)
                   |b $ %{} :Leaf (:at 1658490540128) (:by |u0) (:text |b)
-              |j $ %{} :Expr (:at 1658491111089) (:by |u0)
-                :data $ {}
-                  |T $ %{} :Leaf (:at 1687541232367) (:by |u0) (:text |doc-fn)
-                  |b $ %{} :Leaf (:at 1658491111089) (:by |u0) (:text "|\"w placed at last element")
               |l $ %{} :Expr (:at 1658490540128) (:by |u0)
                 :data $ {}
                   |T $ %{} :Leaf (:at 1658490866200) (:by |u0) (:text |let-sugar)
@@ -1432,8 +1428,7 @@
           :data $ {}
             |T $ %{} :Leaf (:at 1658490540128) (:by |u0) (:text |ns)
             |b $ %{} :Leaf (:at 1658490540128) (:by |u0) (:text |quaternion.core)
-    |quaternion.test $ {}
-      :configs $ {}
+    |quaternion.test $ %{} :FileEntry
       :defs $ {}
         |main! $ %{} :CodeEntry (:doc |)
           :code $ %{} :Expr (:at 1651385630841) (:by |u0)
