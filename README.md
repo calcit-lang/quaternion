@@ -4,6 +4,16 @@ TODO.
 
 Function names are boring since Calcit lacks performance polymorphism. You might want [Quaternion in Rust](https://github.com/Quatrefoil-GL/quaternions/).
 
+### Primes
+
+```cirru
+:: :complex x y
+
+:: :v3 x y z
+
+:: :quaternion w x y z
+```
+
 ### Usages
 
 In `quaternion.core`:
