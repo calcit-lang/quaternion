@@ -1,6 +1,6 @@
 
 {} (:package |quaternion)
-  :configs $ {} (:init-fn |quaternion.test/main!) (:reload-fn |quaternion.test/reload!) (:version |0.2.0)
+  :configs $ {} (:init-fn |quaternion.test/main!) (:reload-fn |quaternion.test/reload!) (:version |0.2.1)
     :modules $ [] |calcit-test/
   :entries $ {}
     :test $ {} (:init-fn |quaternion.test/main!) (:reload-fn |quaternion.test/reload!)
@@ -142,7 +142,7 @@
         |q+ $ %{} :CodeEntry (:doc |)
           :code $ quote
             defn q+ (& xs)
-              foldl xs ([] 0 0 0 0)
+              foldl xs (quaternion 0 0 0 0)
                 fn (acc x) (&q+ acc x)
         |q- $ %{} :CodeEntry (:doc |)
           :code $ quote
@@ -248,6 +248,9 @@
                     :from-v3 %quaternion
                     v3 6 8 10
                   quaternion 0 6 8 10
+              testing "\"add multiple q" $ is
+                = (quaternion 6 6 6 6)
+                  q+ (quaternion 1 1 1 1) (quaternion 2 2 2 2) (quaternion 3 3 3 3)
         |test-v-scale $ %{} :CodeEntry (:doc |)
           :code $ quote
             deftest test-v-scale $ testing |v-scale
@@ -269,12 +272,16 @@
                 .dot (v3 0 1 0) (v3 1 0 0)
               is $ = (v3 0 0 -1)
                 .cross (v3 0 1 0) (v3 1 0 0)
+              is $ = (v3 12 15 18)
+                v+ (v3 1 2 3) (v3 4 5 6) (v3 7 8 9)
+              is $ = (sqrt 14)
+                .length $ v3 1 2 3
       :ns $ %{} :CodeEntry (:doc |)
         :code $ quote
           ns quaternion.test $ :require
             calcit-test.core :refer $ deftest testing is *quit-on-failure?
-            quaternion.core :refer $ &q* quaternion %quaternion
-            quaternion.vector :refer $ v-scale v3
+            quaternion.core :refer $ &q* quaternion %quaternion q+
+            quaternion.vector :refer $ v-scale v3 v+
             quaternion.complex :refer $ c+ c* &c* c-scale complex
     |quaternion.vector $ %{} :FileEntry
       :defs $ {}
@@ -305,7 +312,7 @@
         |v+ $ %{} :CodeEntry (:doc |)
           :code $ quote
             defn v+ (& xs)
-              foldl xs ([] 0 0 0)
+              foldl xs (v3 0 0 0)
                 fn (acc x) (&v+ acc x)
         |v- $ %{} :CodeEntry (:doc |)
           :code $ quote
@@ -336,9 +343,8 @@
         |v-length $ %{} :CodeEntry (:doc |)
           :code $ quote
             defn v-length (a)
-              let-sugar
-                    [] x y z
-                    , a
+              tag-match a $ 
+                :v3 x y z
                 sqrt $ -> (&* x x)
                   &+ $ &* y y
                   &+ $ &* z z
