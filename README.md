@@ -18,7 +18,7 @@ Function names are boring since Calcit lacks performance polymorphism. You might
 
 In `quaternion.core`:
 
-Complex math:
+Complex math under `quaternion.complex`:
 
 - `&c*`
 - `&c+`
@@ -29,8 +29,9 @@ Complex math:
 - `c-length`
 - `c-length2`
 - `c-scale`
+- `complex` the constructor
 
-Vector:
+Vector under `quaternion.vector`:
 
 - `&v+`
 - `&v-`
@@ -40,8 +41,10 @@ Vector:
 - `v-cross`
 - `v-dot`
 - `v-normalize`
+- `v-reflect`
+- `v3` the constructor
 
-Quaternion math:
+Quaternion math under `quaternion.core`:
 
 - `&q*`
 - `&q+`
@@ -53,8 +56,9 @@ Quaternion math:
 - `q-length`
 - `q-length2`
 - `q-scale`
+- `quaternion` the constructor
 
-> Notice: Quaternion in this library looks like `[] x y z w` since original usage was in three.js .
+> Notice: `(.to-js q)` of quaternion in this library returns `[x, y, z, w]` since original usage was in three.js .
 
 ### Workflow
 
