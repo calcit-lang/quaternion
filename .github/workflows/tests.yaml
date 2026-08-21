@@ -12,14 +12,14 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
-    - uses: actions/setup-node@v3
+    - uses: actions/setup-node@v6
       with:
         node-version: 20
         cache: 'yarn'
 
-    - uses: calcit-lang/setup-cr@0.0.3
-      with:
-        version: "0.9.0"
+    - uses: corepack/action@v1
+    - run: corepack prepare yarn@4.12.0 --activate
+    - uses: calcit-lang/setup-calcit@v1
 
     - name: "test"
-      run: caps --ci && cr -1 && cr -1 js && yarn && node ./main.mjs
+      run: caps --ci && calcit calcit.cirru --check-only && calcit calcit.cirru js && yarn install --immutable && node ./main.mjs
