@@ -286,6 +286,8 @@
         |test-complex $ %{} 'CodeEntry (:doc |)
           :code $ quote
             deftest test-complex $ testing "|trying complex values"
+              is $ = (complex 2 -3)
+                c-conjugate $ complex 2 3
               is $ = (complex -7 22)
                 c* (complex 2 3) (complex 4 5)
               is $ = (complex -5 10)
@@ -357,7 +359,7 @@
             calcit-test.core :refer $ deftest testing is *quit-on-failure?
             quaternion.core :refer $ &q* quaternion q+ q-to-v3 q-from-v3
             quaternion.vector :refer $ v-scale v3 v+ v-dot v-cross v-length
-            quaternion.complex :refer $ c+ c* &c* c-scale complex
+            quaternion.complex :refer $ c+ c* &c* c-scale c-conjugate complex
     |quaternion.vector $ %{} 'FileEntry
       :defs $ {}
         |&v+ $ %{} 'CodeEntry (:doc |)
