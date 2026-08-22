@@ -52,8 +52,8 @@
         |c* $ %{} 'CodeEntry (:doc |)
           :code $ quote
             defn c* (& xs)
-              foldl (rest xs)
-                option:unwrap-or (first xs) nil
+              foldl xs
+                (complex 1 0)
                 fn (acc x) (&c* acc x)
           :examples $ []
           :schema $ :: 'Dynamic
@@ -70,7 +70,7 @@
             defn c-conjugate (a)
               tag-match a $
                 :complex x y
-                complex (&- 0 x) y
+                complex x $ &- 0 y
           :examples $ []
           :schema $ :: 'Dynamic
         |c-length $ %{} 'CodeEntry (:doc |)
@@ -241,7 +241,7 @@
               match self $
                 :quaternion s x y z
                 do
-                  if (not= s 0) (eprintln "|s is not zero in quaternion when convering")
+                  if (not= s 0) (eprintln "|s is not zero in quaternion when converting")
                   v3 x y z
           :examples $ []
           :schema $ :: 'Dynamic
@@ -287,8 +287,8 @@
         |test-complex $ %{} 'CodeEntry (:doc |)
           :code $ quote
             deftest test-complex $ testing "|trying complex values"
-              is $ = (complex -5 10)
-                c* (complex 1 2) (complex 3 4)
+              is $ = (complex -7 22)
+                c* (complex 2 3) (complex 4 5)
               is $ = (complex -5 10)
                 c* (complex 1 2) (complex 3 4)
               is $ = (complex -85 20)
