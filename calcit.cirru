@@ -52,8 +52,7 @@
         |c* $ %{} 'CodeEntry (:doc |)
           :code $ quote
             defn c* (& xs)
-              foldl xs
-                (complex 1 0)
+              foldl xs (complex 1 0)
                 fn (acc x) (&c* acc x)
           :examples $ []
           :schema $ :: 'Dynamic
