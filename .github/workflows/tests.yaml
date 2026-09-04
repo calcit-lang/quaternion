@@ -19,5 +19,24 @@ jobs:
     - run: corepack enable && corepack prepare yarn@4.12.0 --activate
     - uses: calcit-lang/setup-calcit@3b5843cb725963bb4ee158cfe49dad877134963e
 
-    - name: "test"
-      run: caps --ci && calcit calcit.cirru --check-only && calcit calcit.cirru js && yarn install --immutable && node ./main.mjs
+    - name: Install strict dependencies
+      run: caps --calcit-version 0.13.77 --strict --ci
+
+    - name: Verify canonical Snapshot
+      run: calcit calcit.cirru edit format && git diff --exit-code -- calcit.cirru
+
+    - name: Check Calcit and static quality
+      run: |
+        calcit calcit.cirru --check-only
+        calcit calcit.cirru analyze check-types --summary-only
+        calcit calcit.cirru analyze quality --baseline config/calcit-quality.cirru
+        calcit calcit.cirru docs check-md README.md --failures-only
+
+    - name: Test native backend
+      run: calcit calcit.cirru
+
+    - name: Test JavaScript backend
+      run: |
+        calcit calcit.cirru js
+        yarn install --immutable
+        node ./main.mjs

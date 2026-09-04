@@ -6,7 +6,7 @@ Function names are boring since Calcit lacks performance polymorphism. You might
 
 ### Primes
 
-```cirru
+```cirru.no-check
 :: :complex x y
 
 :: :v3 x y z

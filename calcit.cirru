@@ -3,16 +3,16 @@
   :entries $ {}
     :default $ {} (:description |) (:init-fn 'quaternion.test/main!) (:mode :native) (:reload-fn 'quaternion.test/reload!)
       :feature-policy $ {}
-      :modules $ [] |calcit-test/
+      :modules $ []
       :type-slots $ {}
     :test $ {} (:description |) (:init-fn 'quaternion.test/main!) (:mode :native) (:reload-fn 'quaternion.test/reload!)
       :feature-policy $ {}
-      :modules $ [] |calcit-test/
+      :modules $ []
       :type-slots $ {}
   :files $ {}
-    |quaternion.complex $ %{} 'FileEntry
+    'quaternion.complex $ %{} 'FileEntry
       :defs $ {}
-        |&c* $ %{} 'CodeEntry (:doc |)
+        '&c* $ %{} 'CodeEntry (:doc |)
           :code $ quote
             defn &c* (a b)
               tag-match a $
@@ -24,7 +24,7 @@
                     &+ (&* x0 y1) (&* x1 y0)
           :examples $ []
           :schema $ :: 'Dynamic
-        |&c+ $ %{} 'CodeEntry (:doc |)
+        '&c+ $ %{} 'CodeEntry (:doc |)
           :code $ quote
             defn &c+ (a b)
               tag-match a $
@@ -34,7 +34,7 @@
                   complex (&+ x0 x1) (&+ y0 y1)
           :examples $ []
           :schema $ :: 'Dynamic
-        |&c- $ %{} 'CodeEntry (:doc |)
+        '&c- $ %{} 'CodeEntry (:doc |)
           :code $ quote
             defn &c- (a b)
               tag-match a $
@@ -44,19 +44,19 @@
                   complex (&- x0 x1) (&- y0 y1)
           :examples $ []
           :schema $ :: 'Dynamic
-        |Complex $ %{} 'CodeEntry (:doc |)
+        'Complex $ %{} 'CodeEntry (:doc |)
           :code $ quote
             defenum Complex $ :complex 'Number 'Number
           :examples $ []
           :schema $ :: 'Enum
-        |c* $ %{} 'CodeEntry (:doc |)
+        'c* $ %{} 'CodeEntry (:doc |)
           :code $ quote
             defn c* (& xs)
               foldl xs (complex 1 0)
                 fn (acc x) (&c* acc x)
           :examples $ []
           :schema $ :: 'Dynamic
-        |c+ $ %{} 'CodeEntry (:doc |)
+        'c+ $ %{} 'CodeEntry (:doc |)
           :code $ quote
             defn c+ (& xs)
               foldl (rest xs)
@@ -64,7 +64,7 @@
                 fn (acc x) (&c+ acc x)
           :examples $ []
           :schema $ :: 'Dynamic
-        |c-conjugate $ %{} 'CodeEntry (:doc |)
+        'c-conjugate $ %{} 'CodeEntry (:doc |)
           :code $ quote
             defn c-conjugate (a)
               tag-match a $
@@ -72,7 +72,7 @@
                 complex x $ &- 0 y
           :examples $ []
           :schema $ :: 'Dynamic
-        |c-length $ %{} 'CodeEntry (:doc |)
+        'c-length $ %{} 'CodeEntry (:doc |)
           :code $ quote
             defn c-length (v)
               tag-match v $
@@ -80,7 +80,7 @@
                 sqrt $ &+ (&* x x) (&* y y)
           :examples $ []
           :schema $ :: 'Dynamic
-        |c-length2 $ %{} 'CodeEntry (:doc |)
+        'c-length2 $ %{} 'CodeEntry (:doc |)
           :code $ quote
             defn c-length2 (v)
               tag-match v $
@@ -88,7 +88,7 @@
                 &+ (&* x x) (&* y y)
           :examples $ []
           :schema $ :: 'Dynamic
-        |c-scale $ %{} 'CodeEntry (:doc |)
+        'c-scale $ %{} 'CodeEntry (:doc |)
           :code $ quote
             defn c-scale (v n)
               tag-match v $
@@ -96,16 +96,16 @@
                 complex (&* n x) (&* n y)
           :examples $ []
           :schema $ :: 'Dynamic
-        |complex $ %{} 'CodeEntry (:doc |)
+        'complex $ %{} 'CodeEntry (:doc |)
           :code $ quote
             defn complex (x y) (%:: Complex :complex x y)
           :examples $ []
           :schema $ :: 'Dynamic
       :ns $ %{} 'NsEntry (:doc |)
         :code $ quote (ns quaternion.complex)
-    |quaternion.core $ %{} 'FileEntry
+    'quaternion.core $ %{} 'FileEntry
       :defs $ {}
-        |&q* $ %{} 'CodeEntry (:doc |)
+        '&q* $ %{} 'CodeEntry (:doc |)
           :code $ quote
             defn &q* (a b)
               tag-match a $
@@ -131,7 +131,7 @@
                       &+ $ &* z1 w2
           :examples $ []
           :schema $ :: 'Dynamic
-        |&q+ $ %{} 'CodeEntry (:doc |)
+        '&q+ $ %{} 'CodeEntry (:doc |)
           :code $ quote
             defn &q+ (a b)
               tag-match a $
@@ -141,7 +141,7 @@
                   quaternion (&+ w w1) (&+ x x1) (&+ y y1) (&+ z z1)
           :examples $ []
           :schema $ :: 'Dynamic
-        |&q- $ %{} 'CodeEntry (:doc |)
+        '&q- $ %{} 'CodeEntry (:doc |)
           :code $ quote
             defn &q- (a b)
               tag-match a $
@@ -151,19 +151,19 @@
                   quaternion (&- w w1) (&- x x1) (&- y y1) (&- z z1)
           :examples $ []
           :schema $ :: 'Dynamic
-        |Quaternion $ %{} 'CodeEntry (:doc |)
+        'Quaternion $ %{} 'CodeEntry (:doc |)
           :code $ quote
             defenum Quaternion $ :quaternion 'Number 'Number 'Number 'Number
           :examples $ []
           :schema $ :: 'Enum
-        |q+ $ %{} 'CodeEntry (:doc |)
+        'q+ $ %{} 'CodeEntry (:doc |)
           :code $ quote
             defn q+ (& xs)
               foldl xs (quaternion 0 0 0 0)
                 fn (acc x) (&q+ acc x)
           :examples $ []
           :schema $ :: 'Dynamic
-        |q- $ %{} 'CodeEntry (:doc |)
+        'q- $ %{} 'CodeEntry (:doc |)
           :code $ quote
             defn q- (& xs)
               foldl (rest xs)
@@ -171,7 +171,7 @@
                 fn (acc x) (&q- acc x)
           :examples $ []
           :schema $ :: 'Dynamic
-        |q-conjugate $ %{} 'CodeEntry (:doc |)
+        'q-conjugate $ %{} 'CodeEntry (:doc |)
           :code $ quote
             defn q-conjugate (a)
               tag-match a $
@@ -179,7 +179,7 @@
                 quaternion w (&- 0 x) (&- 0 y) (&- 0 z)
           :examples $ []
           :schema $ :: 'Dynamic
-        |q-from-v3 $ %{} 'CodeEntry (:doc |)
+        'q-from-v3 $ %{} 'CodeEntry (:doc |)
           :code $ quote
             defn q-from-v3 (v)
               match v $
@@ -187,7 +187,7 @@
                 quaternion 0 x y z
           :examples $ []
           :schema $ :: 'Dynamic
-        |q-inverse $ %{} 'CodeEntry (:doc |)
+        'q-inverse $ %{} 'CodeEntry (:doc |)
           :code $ quote
             defn q-inverse (a)
               let
@@ -196,7 +196,7 @@
                 q-scale (q-conjugate a) (&/ 1 l)
           :examples $ []
           :schema $ :: 'Dynamic
-        |q-length $ %{} 'CodeEntry (:doc |)
+        'q-length $ %{} 'CodeEntry (:doc |)
           :code $ quote
             defn q-length (a)
               tag-match a $
@@ -207,7 +207,7 @@
                   &+ $ &* w w
           :examples $ []
           :schema $ :: 'Dynamic
-        |q-length2 $ %{} 'CodeEntry (:doc |)
+        'q-length2 $ %{} 'CodeEntry (:doc |)
           :code $ quote
             defn q-length2 (a)
               tag-match a $
@@ -218,7 +218,7 @@
                   &+ $ &* w w
           :examples $ []
           :schema $ :: 'Dynamic
-        |q-scale $ %{} 'CodeEntry (:doc |)
+        'q-scale $ %{} 'CodeEntry (:doc |)
           :code $ quote
             defn q-scale (v n)
               tag-match v $
@@ -226,7 +226,7 @@
                 quaternion (&* n w) (&* n x) (&* n y) (&* n z)
           :examples $ []
           :schema $ :: 'Dynamic
-        |q-to-js $ %{} 'CodeEntry (:doc |)
+        'q-to-js $ %{} 'CodeEntry (:doc |)
           :code $ quote
             defn q-to-js (self)
               match self $
@@ -234,7 +234,7 @@
                 js-array x y z s
           :examples $ []
           :schema $ :: 'Dynamic
-        |q-to-v3 $ %{} 'CodeEntry (:doc |)
+        'q-to-v3 $ %{} 'CodeEntry (:doc |)
           :code $ quote
             defn q-to-v3 (self)
               match self $
@@ -244,7 +244,7 @@
                   v3 x y z
           :examples $ []
           :schema $ :: 'Dynamic
-        |quaternion $ %{} 'CodeEntry (:doc |)
+        'quaternion $ %{} 'CodeEntry (:doc |)
           :code $ quote
             defn quaternion (s x y z) (%:: Quaternion :quaternion s x y z)
           :examples $ []
@@ -253,39 +253,39 @@
         :code $ quote
           ns quaternion.core $ :require
             quaternion.vector :refer $ v3
-    |quaternion.test $ %{} 'FileEntry
+    'quaternion.test $ %{} 'FileEntry
       :defs $ {}
-        |main! $ %{} 'CodeEntry (:doc |)
+        'main! $ %{} 'CodeEntry (:doc |)
           :code $ quote
             defn main! () $ run-tests
           :examples $ []
           :schema $ :: 'Dynamic
-        |reload! $ %{} 'CodeEntry (:doc |)
+        'reload! $ %{} 'CodeEntry (:doc |)
           :code $ quote
             defn reload! () (println |reload...) (run-tests)
           :examples $ []
           :schema $ :: 'Dynamic
-        |run-tests $ %{} 'CodeEntry (:doc |)
+        'run-tests $ %{} 'CodeEntry (:doc |)
           :code $ quote
-            defn run-tests () (reset! *quit-on-failure? true) (test-add) (test-v-scale) (test-multiply) (test-complex) (test-v3) (test-quaternion)
+            defn run-tests () (test-add) (test-v-scale) (test-multiply) (test-complex) (test-v3) (test-quaternion)
           :examples $ []
           :schema $ :: 'Dynamic
-        |test-add $ %{} 'CodeEntry (:doc |)
+        'test-add $ %{} 'CodeEntry (:doc |)
           :code $ quote
-            deftest test-add
-              testing "|multiply quaternion" $ is
+            defn test-add ()
+              do "|multiply quaternion" $ is
                 = (quaternion -60 12 30 24)
                   &q* (quaternion 1 2 3 4) (quaternion 5 6 7 8)
-              testing "|add complex"
+              do "|add complex"
                 is $ = (complex 9 12)
                   c+ (complex 1 2) (complex 3 4) (complex 5 6)
                 is $ = (complex 4 6)
                   c+ (complex 1 2) (complex 3 4)
           :examples $ []
           :schema $ :: 'Dynamic
-        |test-complex $ %{} 'CodeEntry (:doc |)
+        'test-complex $ %{} 'CodeEntry (:doc |)
           :code $ quote
-            deftest test-complex $ testing "|trying complex values"
+            defn test-complex () $ do "|trying complex values"
               is $ = (complex 2 -3)
                 c-conjugate $ complex 2 3
               is $ = (complex -7 22)
@@ -296,9 +296,9 @@
                 c* (complex 1 2) (complex 3 4) (complex 5 6)
           :examples $ []
           :schema $ :: 'Dynamic
-        |test-multiply $ %{} 'CodeEntry (:doc |)
+        'test-multiply $ %{} 'CodeEntry (:doc |)
           :code $ quote
-            deftest test-multiply $ testing "|multiply complex"
+            defn test-multiply () $ do "|multiply complex"
               is $ = (complex -5 10)
                 &c* (complex 1 2) (complex 3 4)
               is $ = (complex -5 10)
@@ -307,26 +307,26 @@
                 c* (complex 1 2) (complex 3 4) (complex 5 6)
           :examples $ []
           :schema $ :: 'Dynamic
-        |test-quaternion $ %{} 'CodeEntry (:doc |)
+        'test-quaternion $ %{} 'CodeEntry (:doc |)
           :code $ quote
-            deftest test-quaternion
-              testing "|quaternion demos" $ is
+            defn test-quaternion ()
+              do "|quaternion demos" $ is
                 = (quaternion 4 6 8 10)
                   q+ (quaternion 0 1 2 3) (quaternion 4 5 6 7)
-              testing "|v3 to quaternion"
+              do "|v3 to quaternion"
                 is $ = (v3 6 8 10)
                   q-to-v3 $ quaternion 4 6 8 10
                 let
                     converted $ q-from-v3 (v3 6 8 10)
                   is $ = converted (quaternion 0 6 8 10)
-              testing "|add multiple q" $ is
+              do "|add multiple q" $ is
                 = (quaternion 6 6 6 6)
                   q+ (quaternion 1 1 1 1) (quaternion 2 2 2 2) (quaternion 3 3 3 3)
           :examples $ []
           :schema $ :: 'Dynamic
-        |test-v-scale $ %{} 'CodeEntry (:doc |)
+        'test-v-scale $ %{} 'CodeEntry (:doc |)
           :code $ quote
-            deftest test-v-scale $ testing |v-scale
+            defn test-v-scale () $ do |v-scale
               is $ =
                 v-scale (complex 1 2) 3
                 complex 3 6
@@ -338,9 +338,9 @@
                 complex 3 6
           :examples $ []
           :schema $ :: 'Dynamic
-        |test-v3 $ %{} 'CodeEntry (:doc |)
+        'test-v3 $ %{} 'CodeEntry (:doc |)
           :code $ quote
-            deftest test-v3 $ testing "|trying v3 values"
+            defn test-v3 () $ do "|trying v3 values"
               is $ = (v3 5 7 9)
                 v+ (v3 1 2 3) (v3 4 5 6)
               is $ = 0
@@ -356,13 +356,13 @@
       :ns $ %{} 'NsEntry (:doc |)
         :code $ quote
           ns quaternion.test $ :require
-            calcit-test.core :refer $ deftest testing is *quit-on-failure?
+            calcit.test :refer $ is
             quaternion.core :refer $ &q* quaternion q+ q-to-v3 q-from-v3
             quaternion.vector :refer $ v-scale v3 v+ v-dot v-cross v-length
             quaternion.complex :refer $ c+ c* &c* c-scale c-conjugate complex
-    |quaternion.vector $ %{} 'FileEntry
+    'quaternion.vector $ %{} 'FileEntry
       :defs $ {}
-        |&v+ $ %{} 'CodeEntry (:doc |)
+        '&v+ $ %{} 'CodeEntry (:doc |)
           :code $ quote
             defn &v+ (a b)
               tag-match a $
@@ -372,7 +372,7 @@
                   v3 (&+ x x2) (&+ y y2) (&+ z z2)
           :examples $ []
           :schema $ :: 'Dynamic
-        |&v- $ %{} 'CodeEntry (:doc |)
+        '&v- $ %{} 'CodeEntry (:doc |)
           :code $ quote
             defn &v- (a b)
               tag-match a $
@@ -382,19 +382,19 @@
                   v3 (&- x x2) (&- y y2) (&- z z2)
           :examples $ []
           :schema $ :: 'Dynamic
-        |V3 $ %{} 'CodeEntry (:doc |)
+        'V3 $ %{} 'CodeEntry (:doc |)
           :code $ quote
             defenum V3 $ :v3 'Number 'Number 'Number
           :examples $ []
           :schema $ :: 'Enum
-        |v+ $ %{} 'CodeEntry (:doc |)
+        'v+ $ %{} 'CodeEntry (:doc |)
           :code $ quote
             defn v+ (& xs)
               foldl xs (v3 0 0 0)
                 fn (acc x) (&v+ acc x)
           :examples $ []
           :schema $ :: 'Dynamic
-        |v- $ %{} 'CodeEntry (:doc |)
+        'v- $ %{} 'CodeEntry (:doc |)
           :code $ quote
             defn v- (& xs)
               foldl (rest xs)
@@ -402,7 +402,7 @@
                 fn (acc x) (&v- acc x)
           :examples $ []
           :schema $ :: 'Dynamic
-        |v-cross $ %{} 'CodeEntry (:doc |)
+        'v-cross $ %{} 'CodeEntry (:doc |)
           :code $ quote
             defn v-cross (v1 v2)
               tag-match v1 $
@@ -415,7 +415,7 @@
                     &- (&* x1 y2) (&* x2 y1)
           :examples $ []
           :schema $ :: 'Dynamic
-        |v-dot $ %{} 'CodeEntry (:doc |)
+        'v-dot $ %{} 'CodeEntry (:doc |)
           :code $ quote
             defn v-dot (v1 v2)
               tag-match v1 $
@@ -427,7 +427,7 @@
                     &+ $ &* z1 z2
           :examples $ []
           :schema $ :: 'Dynamic
-        |v-length $ %{} 'CodeEntry (:doc |)
+        'v-length $ %{} 'CodeEntry (:doc |)
           :code $ quote
             defn v-length (a)
               tag-match a $
@@ -437,7 +437,7 @@
                   &+ $ &* z z
           :examples $ []
           :schema $ :: 'Dynamic
-        |v-normalize $ %{} 'CodeEntry (:doc |)
+        'v-normalize $ %{} 'CodeEntry (:doc |)
           :code $ quote
             defn v-normalize (v)
               tag-match v $
@@ -451,7 +451,7 @@
                   v-scale v $ &/ 1 length
           :examples $ []
           :schema $ :: 'Dynamic
-        |v-reflect $ %{} 'CodeEntry (:doc |)
+        'v-reflect $ %{} 'CodeEntry (:doc |)
           :code $ quote
             defn v-reflect (a base)
               let
@@ -462,7 +462,7 @@
                 &v- a-shadow b
           :examples $ []
           :schema $ :: 'Dynamic
-        |v-scale $ %{} 'CodeEntry (:doc |)
+        'v-scale $ %{} 'CodeEntry (:doc |)
           :code $ quote
             defn v-scale (v n)
               tag-match v
@@ -472,7 +472,7 @@
                   complex (&* n x) (&* n y)
           :examples $ []
           :schema $ :: 'Dynamic
-        |v3 $ %{} 'CodeEntry (:doc |)
+        'v3 $ %{} 'CodeEntry (:doc |)
           :code $ quote
             defn v3 (x y z) (%:: V3 :v3 x y z)
           :examples $ []
