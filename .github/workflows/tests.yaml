@@ -47,6 +47,7 @@ jobs:
     - name: Verify assertion failures exit non-zero across backends
       shell: bash
       run: |
+        mkdir -p .calcit
         probe_dir="$(mktemp -d .calcit/assertion-probe.XXXXXX)"
         trap 'rm -rf "$probe_dir"' EXIT
 
