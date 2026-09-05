@@ -6,6 +6,9 @@ on:
       - main
   pull_request: {}
 
+permissions:
+  contents: read
+
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -17,7 +20,7 @@ jobs:
         node-version: 20
 
     - run: corepack enable && corepack prepare yarn@4.12.0 --activate
-    - uses: calcit-lang/setup-calcit@704b3f5cd6f9ce3bd1e0c926dbdd1d181adb8180 # v1.4.0
+    - uses: calcit-lang/setup-calcit@v1.4.0
 
     - name: Install strict dependencies
       run: caps --calcit-version 0.13.77 --strict --ci
@@ -40,3 +43,38 @@ jobs:
         calcit calcit.cirru js
         yarn install --immutable
         node ./main.mjs
+
+    - name: Verify assertion failures exit non-zero across backends
+      shell: bash
+      run: |
+        mkdir -p .calcit
+        probe_dir="$(mktemp -d .calcit/assertion-probe.XXXXXX)"
+        trap 'rm -rf "$probe_dir"' EXIT
+
+        set +e
+        timeout 10s calcit calcit.cirru --entry test >"$probe_dir/native.log" 2>&1
+        native_status=$?
+        set -e
+        cat "$probe_dir/native.log"
+        if [ "$native_status" -eq 0 ] || [ "$native_status" -eq 124 ]; then
+          echo "native assertion probe returned unexpected status: $native_status" >&2
+          exit 1
+        fi
+        grep -q 'Expected-truthy-expression: false' "$probe_dir/native.log"
+
+        calcit calcit.cirru --entry test js
+        cp -R js-out "$probe_dir/js-out"
+        printf '%s\n' \
+          'import { assertion_failure_probe_$x_ } from "./js-out/quaternion.test.mjs"' \
+          'assertion_failure_probe_$x_()' \
+          >"$probe_dir/main.mjs"
+        set +e
+        (cd "$probe_dir" && timeout 10s node ./main.mjs) >"$probe_dir/js.log" 2>&1
+        js_status=$?
+        set -e
+        cat "$probe_dir/js.log"
+        if [ "$js_status" -eq 0 ] || [ "$js_status" -eq 124 ]; then
+          echo "JavaScript assertion probe returned unexpected status: $js_status" >&2
+          exit 1
+        fi
+        grep -q 'Expected-truthy-expression: false' "$probe_dir/js.log"

@@ -5,7 +5,7 @@
       :feature-policy $ {}
       :modules $ []
       :type-slots $ {}
-    :test $ {} (:description |) (:init-fn 'quaternion.test/main!) (:mode :native) (:reload-fn 'quaternion.test/reload!)
+    :test $ {} (:description "|Deliberate assertion-failure exit-status probe only") (:init-fn 'quaternion.test/assertion-failure-probe!) (:mode :native) (:reload-fn 'quaternion.test/assertion-failure-probe!)
       :feature-policy $ {}
       :modules $ []
       :type-slots $ {}
@@ -255,6 +255,13 @@
             quaternion.vector :refer $ v3
     'quaternion.test $ %{} 'FileEntry
       :defs $ {}
+        'assertion-failure-probe! $ %{} 'CodeEntry (:doc |)
+          :code $ quote
+            defn assertion-failure-probe! () $ is false
+          :examples $ []
+          :schema $ :: 'Fn
+            {} (:return 'Unit)
+              :args $ []
         'main! $ %{} 'CodeEntry (:doc |)
           :code $ quote
             defn main! () $ run-tests
