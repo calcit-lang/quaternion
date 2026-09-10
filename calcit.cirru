@@ -394,9 +394,6 @@
           :code $ quote
             defn test-v-scale () $ do |v-scale
               is $ =
-                v-scale (complex 1 2) 3
-                complex 3 6
-              is $ =
                 v-scale (v3 1 2 3) 4
                 v3 4 8 12
               is $ =
@@ -551,16 +548,13 @@
         'v-scale $ %{} 'CodeEntry (:doc |)
           :code $ quote
             defn v-scale (v n)
-              match v
-                (:v3 x y z)
-                  v3 (&* n x) (&* n y) (&* n z)
-                (:complex x y)
-                  complex (&* n x) (&* n y)
+              match v $
+                :v3 x y z
+                v3 (&* n x) (&* n y) (&* n z)
           :examples $ []
           :schema $ :: 'Fn
-            {} (:return 'T)
-              :args $ [] 'T 'Number
-              :generics $ [] 'T
+            {} (:return 'quaternion.vector/V3)
+              :args $ [] 'quaternion.vector/V3 'Number
         'v3 $ %{} 'CodeEntry (:doc |)
           :code $ quote
             defn v3 (x y z) (%:: V3 :v3 x y z)
