@@ -13,25 +13,29 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v7
 
     - uses: actions/setup-node@v6
       with:
-        node-version: 20
+        node-version: 24
 
     - run: corepack enable && corepack prepare yarn@4.12.0 --activate
     - uses: calcit-lang/setup-calcit@v1.4.0
 
     - name: Install strict dependencies
-      run: caps --calcit-version 0.13.77 --strict --ci
+      run: |
+        caps --calcit-version 0.14.7 --strict --ci
+        yarn install --immutable
+        caps verify --toolchain
 
     - name: Verify canonical Snapshot
       run: calcit calcit.cirru edit format && git diff --exit-code -- calcit.cirru
 
     - name: Check Calcit and static quality
       run: |
-        calcit calcit.cirru --check-only
+        calcit calcit.cirru --strict-types --check-only
         calcit calcit.cirru analyze check-types --summary-only
+        calcit calcit.cirru analyze check-public --ns quaternion.complex --ns quaternion.vector --ns quaternion.core --summary-only
         calcit calcit.cirru analyze quality --baseline config/calcit-quality.cirru
         calcit calcit.cirru docs check-md README.md --failures-only
 
@@ -41,7 +45,6 @@ jobs:
     - name: Test JavaScript backend
       run: |
         calcit calcit.cirru js
-        yarn install --immutable
         node ./main.mjs
 
     - name: Verify assertion failures exit non-zero across backends
