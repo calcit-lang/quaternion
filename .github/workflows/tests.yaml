@@ -26,7 +26,7 @@ jobs:
 
     - name: Install strict dependencies
       run: |
-        caps --calcit-version 0.14.11 --strict --ci
+        caps --calcit-version 0.14.16 --strict --ci
         yarn install --immutable
         caps verify --toolchain
 
