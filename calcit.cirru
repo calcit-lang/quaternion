@@ -101,7 +101,7 @@
           :schema $ :: 'Fn $ {} (:return 'quaternion.complex/Complex)
             :args $ [] 'quaternion.complex/Complex 'Number
         'complex $ %{} 'CodeEntry (:doc |)
-          :code $ quote $ defn complex (x y) (%:: Complex :complex x y)
+          :code $ quote $ defn complex (x y) (Complex :complex x y)
           :examples $ []
           :schema $ :: 'Fn $ {} (:return 'quaternion.complex/Complex)
             :args $ [] 'Number 'Number
@@ -247,7 +247,7 @@
           :schema $ :: 'Fn $ {} (:return 'quaternion.vector/V3)
             :args $ [] 'quaternion.core/Quaternion
         'quaternion $ %{} 'CodeEntry (:doc |)
-          :code $ quote $ defn quaternion (s x y z) (%:: Quaternion :quaternion s x y z)
+          :code $ quote $ defn quaternion (s x y z) (Quaternion :quaternion s x y z)
           :examples $ []
           :schema $ :: 'Fn $ {} (:return 'quaternion.core/Quaternion)
             :args $ [] 'Number 'Number 'Number 'Number
@@ -277,10 +277,10 @@
           :schema $ :: 'Fn $ {} (:return 'Unit)
             :args $ []
         'test-add $ %{} 'CodeEntry (:doc |)
-          :code $ quote $ defn test-add ()
-            do "|multiply quaternion" $ is $ = (quaternion -60 12 30 24)
+          :code $ quote $ defn test-add () "|multiply quaternion"
+            is $ = (quaternion -60 12 30 24)
               &q* (quaternion 1 2 3 4) (quaternion 5 6 7 8)
-            do "|add complex"
+            , "|add complex"
               is $ = (complex 9 12)
                 c+ (complex 1 2) (complex 3 4) (complex 5 6)
               is $ = (complex 4 6)
@@ -289,70 +289,67 @@
           :schema $ :: 'Fn $ {} (:return 'Unit)
             :args $ []
         'test-complex $ %{} 'CodeEntry (:doc |)
-          :code $ quote $ defn test-complex ()
-            do "|trying complex values"
-              is $ = (complex 2 -3)
-                c-conjugate $ complex 2 3
-              is $ = (complex -7 22)
-                c* (complex 2 3) (complex 4 5)
-              is $ = (complex -5 10)
-                c* (complex 1 2) (complex 3 4)
-              is $ = (complex -85 20)
-                c* (complex 1 2) (complex 3 4) (complex 5 6)
+          :code $ quote $ defn test-complex () "|trying complex values"
+            is $ = (complex 2 -3)
+              c-conjugate $ complex 2 3
+            is $ = (complex -7 22)
+              c* (complex 2 3) (complex 4 5)
+            is $ = (complex -5 10)
+              c* (complex 1 2) (complex 3 4)
+            is $ = (complex -85 20)
+              c* (complex 1 2) (complex 3 4) (complex 5 6)
           :examples $ []
           :schema $ :: 'Fn $ {} (:return 'Unit)
             :args $ []
         'test-multiply $ %{} 'CodeEntry (:doc |)
-          :code $ quote $ defn test-multiply ()
-            do "|multiply complex"
-              is $ = (complex -5 10)
-                &c* (complex 1 2) (complex 3 4)
-              is $ = (complex -5 10)
-                c* (complex 1 2) (complex 3 4)
-              is $ = (complex -85 20)
-                c* (complex 1 2) (complex 3 4) (complex 5 6)
+          :code $ quote $ defn test-multiply () "|multiply complex"
+            is $ = (complex -5 10)
+              &c* (complex 1 2) (complex 3 4)
+            is $ = (complex -5 10)
+              c* (complex 1 2) (complex 3 4)
+            is $ = (complex -85 20)
+              c* (complex 1 2) (complex 3 4) (complex 5 6)
           :examples $ []
           :schema $ :: 'Fn $ {} (:return 'Unit)
             :args $ []
         'test-quaternion $ %{} 'CodeEntry (:doc |)
-          :code $ quote $ defn test-quaternion ()
-            do "|quaternion demos" $ is $ = (quaternion 4 6 8 10)
+          :code $ quote $ defn test-quaternion () "|quaternion demos"
+            is $ = (quaternion 4 6 8 10)
               q+ (quaternion 0 1 2 3) (quaternion 4 5 6 7)
-            do "|v3 to quaternion"
+            , "|v3 to quaternion"
               is $ = (v3 6 8 10)
                 q-to-v3 $ quaternion 4 6 8 10
               let
                   converted $ q-from-v3 $ v3 6 8 10
                 is $ = converted $ quaternion 0 6 8 10
-            do "|add multiple q" $ is $ = (quaternion 6 6 6 6)
-              q+ (quaternion 1 1 1 1) (quaternion 2 2 2 2) (quaternion 3 3 3 3)
+              , "|add multiple q"
+                is $ = (quaternion 6 6 6 6)
+                  q+ (quaternion 1 1 1 1) (quaternion 2 2 2 2) (quaternion 3 3 3 3)
           :examples $ []
           :schema $ :: 'Fn $ {} (:return 'Unit)
             :args $ []
         'test-v-scale $ %{} 'CodeEntry (:doc |)
-          :code $ quote $ defn test-v-scale ()
-            do |v-scale
-              is $ =
-                v-scale (v3 1 2 3) 4
-                v3 4 8 12
-              is $ =
-                c-scale (complex 1 2) 3
-                complex 3 6
+          :code $ quote $ defn test-v-scale () |v-scale
+            is $ =
+              v-scale (v3 1 2 3) 4
+              v3 4 8 12
+            is $ =
+              c-scale (complex 1 2) 3
+              complex 3 6
           :examples $ []
           :schema $ :: 'Fn $ {} (:return 'Unit)
             :args $ []
         'test-v3 $ %{} 'CodeEntry (:doc |)
-          :code $ quote $ defn test-v3 ()
-            do "|trying v3 values"
-              is $ = (v3 5 7 9)
-                v+ (v3 1 2 3) (v3 4 5 6)
-              is $ = 0 $ v-dot (v3 0 1 0) (v3 1 0 0)
-              is $ = (v3 0 0 -1)
-                v-cross (v3 0 1 0) (v3 1 0 0)
-              is $ = (v3 12 15 18)
-                v+ (v3 1 2 3) (v3 4 5 6) (v3 7 8 9)
-              is $ = (sqrt 14)
-                v-length $ v3 1 2 3
+          :code $ quote $ defn test-v3 () "|trying v3 values"
+            is $ = (v3 5 7 9)
+              v+ (v3 1 2 3) (v3 4 5 6)
+            is $ = 0 $ v-dot (v3 0 1 0) (v3 1 0 0)
+            is $ = (v3 0 0 -1)
+              v-cross (v3 0 1 0) (v3 1 0 0)
+            is $ = (v3 12 15 18)
+              v+ (v3 1 2 3) (v3 4 5 6) (v3 7 8 9)
+            is $ = (sqrt 14)
+              v-length $ v3 1 2 3
           :examples $ []
           :schema $ :: 'Fn $ {} (:return 'Unit)
             :args $ []
@@ -470,7 +467,7 @@
           :schema $ :: 'Fn $ {} (:return 'quaternion.vector/V3)
             :args $ [] 'quaternion.vector/V3 'Number
         'v3 $ %{} 'CodeEntry (:doc |)
-          :code $ quote $ defn v3 (x y z) (%:: V3 :v3 x y z)
+          :code $ quote $ defn v3 (x y z) (V3 :v3 x y z)
           :examples $ []
           :schema $ :: 'Fn $ {} (:return 'quaternion.vector/V3)
             :args $ [] 'Number 'Number 'Number
