@@ -69,9 +69,14 @@ and Yarn 4.18.0 with the node-modules linker.
 caps --strict --ci
 yarn install --immutable
 caps verify --toolchain
-calcit --check-only
+calcit edit format
+git diff --exit-code -- calcit.cirru
+calcit --strict-types --check-only
 calcit --entry test --check-only
+calcit analyze check-types --summary-only
 calcit analyze check-public --ns quaternion.complex --ns quaternion.vector --ns quaternion.core --summary-only
+calcit analyze deprecated
+calcit docs check-md README.md --failures-only
 calcit
 calcit js
 node main.mjs
