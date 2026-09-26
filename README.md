@@ -62,6 +62,34 @@ Quaternion math under `quaternion.core`:
 
 ### Workflow
 
+The compiler and `@calcit/procs` are pinned to Calcit 0.22.1. Use Node 24
+and Yarn 4.18.0 with the node-modules linker.
+
+```bash
+caps --strict --ci
+yarn install --immutable
+caps verify --toolchain
+calcit edit format
+git diff --exit-code -- calcit.cirru
+calcit --strict-types --check-only
+calcit --entry test --check-only
+calcit analyze check-types --summary-only
+calcit analyze check-public --ns quaternion.complex --ns quaternion.vector --ns quaternion.core --summary-only
+calcit analyze deprecated
+calcit docs check-md README.md --failures-only
+calcit
+calcit js
+node main.mjs
+```
+
+The default entry runs the mathematical assertions on both backends. The
+`test` entry is intentionally a failing assertion probe, not the positive test
+suite: CI requires it to fail with the expected message on native and JavaScript.
+There are no definition-attached tests; an empty `calcit test` report is not a
+substitute for running the default entry. The legacy quality baseline was all
+zero and has been retired in favor of strict checks, public API checks and
+runtime tests.
+
 https://github.com/calcit-lang/calcit-workflow
 
 ### License
