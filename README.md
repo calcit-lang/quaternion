@@ -62,7 +62,7 @@ Quaternion math under `quaternion.core`:
 
 ### Workflow
 
-The compiler and `@calcit/procs` are pinned to Calcit 0.22.1. Use Node 24
+The compiler and `@calcit/procs` are pinned to Calcit 0.23.1. Use Node 24
 and Yarn 4.18.0 with the node-modules linker.
 
 ```bash
