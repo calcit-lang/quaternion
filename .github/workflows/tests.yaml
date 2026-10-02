@@ -70,7 +70,7 @@ jobs:
           echo "native assertion probe returned unexpected status: $native_status" >&2
           exit 1
         fi
-        rg -q 'Expected-truthy-expression: false' "$probe_dir/native.log"
+        grep -q 'Expected-truthy-expression: false' "$probe_dir/native.log"
 
         calcit calcit.cirru --entry test js
         set +e
@@ -82,4 +82,4 @@ jobs:
           echo "JavaScript assertion probe returned unexpected status: $js_status" >&2
           exit 1
         fi
-        rg -q 'Expected-truthy-expression: false' "$probe_dir/js.log"
+        grep -q 'Expected-truthy-expression: false' "$probe_dir/js.log"
