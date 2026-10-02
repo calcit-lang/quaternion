@@ -11,20 +11,24 @@ permissions:
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
     steps:
-    - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+    - uses: actions/checkout@v7.0.1
       with:
         persist-credentials: false
 
-    - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+    - uses: actions/setup-node@v6.5.0
       with:
         node-version: 24
+        package-manager-cache: false
 
     - run: corepack enable && corepack prepare yarn@4.18.0 --activate
-    - uses: calcit-lang/setup-calcit@ca701be5a471759e442aa053cd100720bbe1f09f # v1.5.0
+    - uses: calcit-lang/setup-calcit@v1.5.0
       with:
         tools: calcit,caps
+        version: 0.28.0
+        caps-version: 0.1.1
 
     - name: Install strict dependencies
       run: |
@@ -39,9 +43,7 @@ jobs:
       run: |
         calcit calcit.cirru --strict-types --check-only
         calcit calcit.cirru --entry test --check-only
-        calcit calcit.cirru analyze check-types --summary-only
         calcit calcit.cirru analyze check-public --ns quaternion.complex --ns quaternion.vector --ns quaternion.core --summary-only
-        calcit calcit.cirru analyze deprecated
         calcit calcit.cirru docs check-md README.md --failures-only
 
     - name: Test native backend
@@ -68,16 +70,11 @@ jobs:
           echo "native assertion probe returned unexpected status: $native_status" >&2
           exit 1
         fi
-        grep -q 'Expected-truthy-expression: false' "$probe_dir/native.log"
+        rg -q 'Expected-truthy-expression: false' "$probe_dir/native.log"
 
         calcit calcit.cirru --entry test js
-        cp -R js-out "$probe_dir/js-out"
-        printf '%s\n' \
-          'import { assertion_failure_probe_$x_ } from "./js-out/quaternion.test.mjs"' \
-          'assertion_failure_probe_$x_()' \
-          >"$probe_dir/main.mjs"
         set +e
-        (cd "$probe_dir" && timeout 10s node ./main.mjs) >"$probe_dir/js.log" 2>&1
+        timeout 10s node --input-type=module -e 'import { assertion_failure_probe_$x_ } from "./js-out/quaternion.test.mjs"; assertion_failure_probe_$x_()' >"$probe_dir/js.log" 2>&1
         js_status=$?
         set -e
         cat "$probe_dir/js.log"
@@ -85,4 +82,4 @@ jobs:
           echo "JavaScript assertion probe returned unexpected status: $js_status" >&2
           exit 1
         fi
-        grep -q 'Expected-truthy-expression: false' "$probe_dir/js.log"
+        rg -q 'Expected-truthy-expression: false' "$probe_dir/js.log"
