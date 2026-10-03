@@ -4,14 +4,14 @@ TODO.
 
 Function names are boring since Calcit lacks performance polymorphism. You might want [Quaternion in Rust](https://github.com/Quatrefoil-GL/quaternions/).
 
-### Primes
+### Constructors
 
 ```cirru.no-check
-:: :complex x y
+quaternion.complex/complex x y
 
-:: :v3 x y z
+quaternion.vector/v3 x y z
 
-:: :quaternion w x y z
+quaternion.core/quaternion w x y z
 ```
 
 ### Usages
@@ -62,7 +62,7 @@ Quaternion math under `quaternion.core`:
 
 ### Workflow
 
-The compiler and `@calcit/procs` are pinned to Calcit 0.24.2. Use Node 24
+The compiler and `@calcit/procs` are pinned to Calcit 0.28.0. Use Node 24
 and Yarn 4.18.0 with the node-modules linker.
 
 ```bash
@@ -73,9 +73,7 @@ calcit edit format
 git diff --exit-code -- calcit.cirru
 calcit --strict-types --check-only
 calcit --entry test --check-only
-calcit analyze check-types --summary-only
 calcit analyze check-public --ns quaternion.complex --ns quaternion.vector --ns quaternion.core --summary-only
-calcit analyze deprecated
 calcit docs check-md README.md --failures-only
 calcit
 calcit js
