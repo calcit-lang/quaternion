@@ -84,8 +84,8 @@ The default entry runs the mathematical assertions on both backends. The
 suite: CI requires it to fail with the expected message on native and JavaScript.
 There are no definition-attached tests; an empty `calcit test` report is not a
 substitute for running the default entry. The legacy quality baseline was all
-zero and has been retired in favor of strict checks, public API checks and
-runtime tests.
+zero and has been retired in favor of strict entry checks, check-only checks of
+the three listed namespaces, and the native/JavaScript runtime assertions.
 
 `Complex`, `V3`, and `Quaternion` are declared as `EnumDef`, not Enum instances.
 Their existing nominal function signatures and numerical implementations are
