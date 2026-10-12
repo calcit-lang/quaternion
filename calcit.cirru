@@ -54,7 +54,7 @@
         'Complex $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defenum Complex (:complex 'Number 'Number)
           :examples $ []
-          :schema $ :: 'Enum
+          :schema $ :: 'EnumDef
         'c* $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defn c* (& xs)
             foldl xs (complex 1 0)
@@ -158,7 +158,7 @@
         'Quaternion $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defenum Quaternion (:quaternion 'Number 'Number 'Number 'Number)
           :examples $ []
-          :schema $ :: 'Enum
+          :schema $ :: 'EnumDef
         'q+ $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defn q+ (& xs)
             foldl xs (quaternion 0 0 0 0)
@@ -385,7 +385,7 @@
         'V3 $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defenum V3 (:v3 'Number 'Number 'Number)
           :examples $ []
-          :schema $ :: 'Enum
+          :schema $ :: 'EnumDef
         'v+ $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defn v+ (& xs)
             foldl xs (v3 0 0 0)

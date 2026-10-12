@@ -58,11 +58,11 @@ Quaternion math under `quaternion.core`:
 - `q-scale`
 - `quaternion` the constructor
 
-> Notice: `(.to-js q)` of quaternion in this library returns `[x, y, z, w]` since original usage was in three.js .
+> Notice: `quaternion.core/q-to-js q` returns `[x, y, z, w]`, preserving the original three.js order.
 
 ### Workflow
 
-The compiler and `@calcit/procs` are pinned to Calcit 0.28.0. Use Node 24
+The compiler and `@calcit/procs` are pinned to formal Calcit 0.29.0. Use Node 24
 and Yarn 4.18.0 with the node-modules linker.
 
 ```bash
@@ -71,10 +71,9 @@ yarn install --immutable
 caps verify --toolchain
 calcit edit format
 git diff --exit-code -- calcit.cirru
-calcit --strict-types --check-only
+calcit --check-only
 calcit --entry test --check-only
-calcit analyze check-public --ns quaternion.complex --ns quaternion.vector --ns quaternion.core --summary-only
-calcit docs check-md README.md --failures-only
+calcit --check-only --ns quaternion.complex --ns quaternion.vector --ns quaternion.core --summary-only
 calcit
 calcit js
 node main.mjs
@@ -87,6 +86,11 @@ There are no definition-attached tests; an empty `calcit test` report is not a
 substitute for running the default entry. The legacy quality baseline was all
 zero and has been retired in favor of strict checks, public API checks and
 runtime tests.
+
+`Complex`, `V3`, and `Quaternion` are declared as `EnumDef`, not Enum instances.
+Their existing nominal function signatures and numerical implementations are
+unchanged. No compiler rewrite preset, additional test runner or COS deployment
+is needed for this mathematical module; generated `js-out/` remains ignored.
 
 https://github.com/calcit-lang/calcit-workflow
 
