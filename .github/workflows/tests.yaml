@@ -27,7 +27,7 @@ jobs:
     - uses: calcit-lang/setup-calcit@v1.5.0
       with:
         tools: calcit,caps
-        version: 0.29.1
+        version: 0.29.3
         caps-version: 0.1.1
 
     - name: Install strict dependencies
@@ -44,6 +44,7 @@ jobs:
         calcit calcit.cirru --check-only
         calcit calcit.cirru --entry test --check-only
         calcit calcit.cirru --check-only --ns quaternion.complex --ns quaternion.vector --ns quaternion.core --summary-only
+        calcit calcit.cirru fix --workflow strict --verify
 
     - name: Test native backend
       run: calcit calcit.cirru
