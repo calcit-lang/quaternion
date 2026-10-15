@@ -62,10 +62,11 @@ Quaternion math under `quaternion.core`:
 
 ### Workflow
 
-模块 0.2.13 同步正式 Calcit 与 `@calcit/procs` 0.29.3，保留当前具名类型契约、
+本轮模块 0.2.14 同步正式 Calcit 与 `@calcit/procs` 0.30.0，保留当前具名类型契约、
 原有数值算法及 native/JavaScript 断言；已有发布标签保持不变。
+版本在正式 tag 发布前仅为候选，本轮验收不包含 0.30.1。
 
-The compiler and `@calcit/procs` are pinned to formal Calcit 0.29.3. Use Node 24
+The compiler and `@calcit/procs` are pinned to formal Calcit 0.30.0. Use Node 24
 and Yarn 4.18.0 with the node-modules linker.
 
 ```bash
