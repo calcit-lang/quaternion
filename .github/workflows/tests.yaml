@@ -41,10 +41,14 @@ jobs:
 
     - name: Check Calcit and static quality
       run: |
-        calcit calcit.cirru --check-only
+        set -euo pipefail
+        calcit calcit.cirru --check-only --all-defs
         calcit calcit.cirru --entry test --check-only
         calcit calcit.cirru --check-only --ns quaternion.complex --ns quaternion.vector --ns quaternion.core --summary-only
         calcit calcit.cirru fix --workflow strict --verify
+        calcit calcit.cirru analyze weak-types --summary-only --format json | jq -e '.data.summary.hits == 0'
+        calcit calcit.cirru analyze weak-types --only coverage --coverage-level none,partial --summary-only --format json | jq -e '.data.summary.definitions == 0'
+        calcit calcit.cirru analyze weak-types --only deprecated-call --summary-only --format json | jq -e '.data.summary.calls == 0'
 
     - name: Test native backend
       run: calcit calcit.cirru
