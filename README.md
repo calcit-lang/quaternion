@@ -60,13 +60,27 @@ Quaternion math under `quaternion.core`:
 
 > Notice: `quaternion.core/q-to-js q` returns `[x, y, z, w]`, preserving the original three.js order.
 
+这里返回的是原生 **JavaScript Array**，不是 Calcit List。需要 `.get` 或声明
+`List<Number>` 的曲线回调不能直接返回 q-to-js；应按目标接口返回 Calcit List，
+同时保留坐标顺序。例如已有 Quaternion 可在明确的适配边界提取为：
+
+```cirru.no-check
+match q
+  (:quaternion w x y z) ([] x y z w)
+```
+
+这只是说明既有返回合同，不改变 q-to-js 的宿主类型或数组表示。
+
 ### Workflow
 
-本轮模块 0.2.15 候选同步已完整发布配对的 Calcit 与 `@calcit/procs` 0.30.1-alpha.5，保留当前具名类型契约、
-原有数值算法及 native/JavaScript 断言；已有发布标签保持不变。
-版本在正式 tag 发布前仅为候选。正式 Calcit 0.30.1 CLI/npm 配对尚未完成，不能单独升级一端；需要稳定 0.30.0 的消费者可保留模块 0.2.14。
+使用者影响：本轮模块 0.2.16 候选将 Calcit 与 `@calcit/procs` 配对到正式
+0.30.1，保留当前具名类型契约、坐标顺序、原有数值算法及 native/JavaScript 断言。
+源码 Snapshot 不变，不需要重写四元数数据；不添加 COS/CDN 或应用部署。
+0.2.15 已发布标签仍保持 alpha.5 配对的原内容，不覆盖旧 tag；0.2.16 在正式
+tag 发布前仅为候选。仍使用 Calcit 0.30.0 的消费者保留模块 0.2.14。
 
-The compiler and `@calcit/procs` are paired at the completed 0.30.1-alpha.5 publication, not the incomplete formal 0.30.1 release. Use Node 24
+The compiler and `@calcit/procs` are paired at formal 0.30.1. Linux CI verifies
+the paired toolchain; it is not an all-platform runtime guarantee. Use Node 24
 and Yarn 4.18.0 with the node-modules linker.
 
 ```bash
@@ -75,10 +89,13 @@ yarn install --immutable
 caps verify --toolchain
 calcit edit format
 git diff --exit-code -- calcit.cirru
-calcit --check-only
+calcit --check-only --all-defs
 calcit --entry test --check-only
 calcit --check-only --ns quaternion.complex --ns quaternion.vector --ns quaternion.core --summary-only
 calcit fix --workflow strict --verify
+calcit analyze weak-types --summary-only --format json | jq -e '.data.summary.hits == 0'
+calcit analyze weak-types --only coverage --coverage-level none,partial --summary-only --format json | jq -e '.data.summary.definitions == 0'
+calcit analyze weak-types --only deprecated-call --summary-only --format json | jq -e '.data.summary.calls == 0'
 calcit
 calcit js
 node main.mjs
@@ -91,6 +108,8 @@ There are no definition-attached tests; an empty `calcit test` report is not a
 substitute for running the default entry. The legacy quality baseline was all
 zero and has been retired in favor of strict entry checks, check-only checks of
 the three listed namespaces, and the native/JavaScript runtime assertions.
+CI also directly enforces the existing zero-debt/full-coverage/no-deprecated-call
+policy, without restoring a baseline or adding another checker script.
 
 `Complex`, `V3`, and `Quaternion` are declared as `EnumDef`, not Enum instances.
 Their existing nominal function signatures and numerical implementations are
