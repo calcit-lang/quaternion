@@ -1,0 +1,3563 @@
+[
+  {
+    "code": [
+      "def",
+      "calcit-dirname",
+      "|"
+    ],
+    "doc": "",
+    "examples": [],
+    "ffi": null,
+    "ffi_edn": null,
+    "id": "quaternion.$meta/calcit-dirname",
+    "js_ffi": null,
+    "schema": null,
+    "tags": [],
+    "tests": []
+  },
+  {
+    "code": [
+      "def",
+      "calcit-filename",
+      "|calcit.cirru"
+    ],
+    "doc": "",
+    "examples": [],
+    "ffi": null,
+    "ffi_edn": null,
+    "id": "quaternion.$meta/calcit-filename",
+    "js_ffi": null,
+    "schema": null,
+    "tags": [],
+    "tests": []
+  },
+  {
+    "code": [
+      "defn",
+      "&c*",
+      [
+        "a",
+        "b"
+      ],
+      [
+        "match",
+        "a",
+        [
+          [
+            ":complex",
+            "x0",
+            "y0"
+          ],
+          [
+            "match",
+            "b",
+            [
+              [
+                ":complex",
+                "x1",
+                "y1"
+              ],
+              [
+                "complex",
+                [
+                  "&-",
+                  [
+                    "&*",
+                    "x0",
+                    "x1"
+                  ],
+                  [
+                    "&*",
+                    "y0",
+                    "y1"
+                  ]
+                ],
+                [
+                  "&+",
+                  [
+                    "&*",
+                    "x0",
+                    "y1"
+                  ],
+                  [
+                    "&*",
+                    "x1",
+                    "y0"
+                  ]
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ],
+    "doc": "",
+    "examples": [],
+    "ffi": null,
+    "ffi_edn": null,
+    "id": "quaternion.complex/&c*",
+    "js_ffi": null,
+    "schema": [
+      "{}",
+      [
+        ":kind",
+        ":fn"
+      ],
+      [
+        ":return",
+        "'quaternion.complex/Complex"
+      ],
+      [
+        ":args",
+        [
+          "[]",
+          "'quaternion.complex/Complex",
+          "'quaternion.complex/Complex"
+        ]
+      ]
+    ],
+    "tags": [],
+    "tests": []
+  },
+  {
+    "code": [
+      "defn",
+      "&c+",
+      [
+        "a",
+        "b"
+      ],
+      [
+        "match",
+        "a",
+        [
+          [
+            ":complex",
+            "x0",
+            "y0"
+          ],
+          [
+            "match",
+            "b",
+            [
+              [
+                ":complex",
+                "x1",
+                "y1"
+              ],
+              [
+                "complex",
+                [
+                  "&+",
+                  "x0",
+                  "x1"
+                ],
+                [
+                  "&+",
+                  "y0",
+                  "y1"
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ],
+    "doc": "",
+    "examples": [],
+    "ffi": null,
+    "ffi_edn": null,
+    "id": "quaternion.complex/&c+",
+    "js_ffi": null,
+    "schema": [
+      "{}",
+      [
+        ":kind",
+        ":fn"
+      ],
+      [
+        ":return",
+        "'quaternion.complex/Complex"
+      ],
+      [
+        ":args",
+        [
+          "[]",
+          "'quaternion.complex/Complex",
+          "'quaternion.complex/Complex"
+        ]
+      ]
+    ],
+    "tags": [],
+    "tests": []
+  },
+  {
+    "code": [
+      "defn",
+      "&c-",
+      [
+        "a",
+        "b"
+      ],
+      [
+        "match",
+        "a",
+        [
+          [
+            ":complex",
+            "x0",
+            "y0"
+          ],
+          [
+            "match",
+            "b",
+            [
+              [
+                ":complex",
+                "x1",
+                "y1"
+              ],
+              [
+                "complex",
+                [
+                  "&-",
+                  "x0",
+                  "x1"
+                ],
+                [
+                  "&-",
+                  "y0",
+                  "y1"
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ],
+    "doc": "",
+    "examples": [],
+    "ffi": null,
+    "ffi_edn": null,
+    "id": "quaternion.complex/&c-",
+    "js_ffi": null,
+    "schema": [
+      "{}",
+      [
+        ":kind",
+        ":fn"
+      ],
+      [
+        ":return",
+        "'quaternion.complex/Complex"
+      ],
+      [
+        ":args",
+        [
+          "[]",
+          "'quaternion.complex/Complex",
+          "'quaternion.complex/Complex"
+        ]
+      ]
+    ],
+    "tags": [],
+    "tests": []
+  },
+  {
+    "code": [
+      "defenum",
+      "Complex",
+      [
+        ":complex",
+        "'Number",
+        "'Number"
+      ]
+    ],
+    "doc": "",
+    "examples": [],
+    "ffi": null,
+    "ffi_edn": null,
+    "id": "quaternion.complex/Complex",
+    "js_ffi": null,
+    "schema": "'EnumDef",
+    "tags": [],
+    "tests": []
+  },
+  {
+    "code": [
+      "defn",
+      "c*",
+      [
+        "&",
+        "xs"
+      ],
+      [
+        "foldl",
+        "xs",
+        [
+          "complex",
+          "1",
+          "0"
+        ],
+        [
+          "fn",
+          [
+            "acc",
+            "x"
+          ],
+          [
+            "&c*",
+            "acc",
+            "x"
+          ]
+        ]
+      ]
+    ],
+    "doc": "",
+    "examples": [],
+    "ffi": null,
+    "ffi_edn": null,
+    "id": "quaternion.complex/c*",
+    "js_ffi": null,
+    "schema": [
+      "{}",
+      [
+        ":kind",
+        ":fn"
+      ],
+      [
+        ":rest",
+        "'quaternion.complex/Complex"
+      ],
+      [
+        ":return",
+        "'quaternion.complex/Complex"
+      ],
+      [
+        ":args",
+        [
+          "[]"
+        ]
+      ]
+    ],
+    "tags": [],
+    "tests": []
+  },
+  {
+    "code": [
+      "defn",
+      "c+",
+      [
+        "x",
+        "&",
+        "xs"
+      ],
+      [
+        "foldl",
+        "xs",
+        "x",
+        [
+          "fn",
+          [
+            "acc",
+            "item"
+          ],
+          [
+            "&c+",
+            "acc",
+            "item"
+          ]
+        ]
+      ]
+    ],
+    "doc": "",
+    "examples": [],
+    "ffi": null,
+    "ffi_edn": null,
+    "id": "quaternion.complex/c+",
+    "js_ffi": null,
+    "schema": [
+      "{}",
+      [
+        ":kind",
+        ":fn"
+      ],
+      [
+        ":rest",
+        "'quaternion.complex/Complex"
+      ],
+      [
+        ":return",
+        "'quaternion.complex/Complex"
+      ],
+      [
+        ":args",
+        [
+          "[]",
+          "'quaternion.complex/Complex"
+        ]
+      ]
+    ],
+    "tags": [],
+    "tests": []
+  },
+  {
+    "code": [
+      "defn",
+      "c-conjugate",
+      [
+        "a"
+      ],
+      [
+        "match",
+        "a",
+        [
+          [
+            ":complex",
+            "x",
+            "y"
+          ],
+          [
+            "complex",
+            "x",
+            [
+              "&-",
+              "0",
+              "y"
+            ]
+          ]
+        ]
+      ]
+    ],
+    "doc": "",
+    "examples": [],
+    "ffi": null,
+    "ffi_edn": null,
+    "id": "quaternion.complex/c-conjugate",
+    "js_ffi": null,
+    "schema": [
+      "{}",
+      [
+        ":kind",
+        ":fn"
+      ],
+      [
+        ":return",
+        "'quaternion.complex/Complex"
+      ],
+      [
+        ":args",
+        [
+          "[]",
+          "'quaternion.complex/Complex"
+        ]
+      ]
+    ],
+    "tags": [],
+    "tests": []
+  },
+  {
+    "code": [
+      "defn",
+      "c-length",
+      [
+        "v"
+      ],
+      [
+        "match",
+        "v",
+        [
+          [
+            ":complex",
+            "x",
+            "y"
+          ],
+          [
+            "sqrt",
+            [
+              "&+",
+              [
+                "&*",
+                "x",
+                "x"
+              ],
+              [
+                "&*",
+                "y",
+                "y"
+              ]
+            ]
+          ]
+        ]
+      ]
+    ],
+    "doc": "",
+    "examples": [],
+    "ffi": null,
+    "ffi_edn": null,
+    "id": "quaternion.complex/c-length",
+    "js_ffi": null,
+    "schema": [
+      "{}",
+      [
+        ":kind",
+        ":fn"
+      ],
+      [
+        ":return",
+        "'Number"
+      ],
+      [
+        ":args",
+        [
+          "[]",
+          "'quaternion.complex/Complex"
+        ]
+      ]
+    ],
+    "tags": [],
+    "tests": []
+  },
+  {
+    "code": [
+      "defn",
+      "c-length2",
+      [
+        "v"
+      ],
+      [
+        "match",
+        "v",
+        [
+          [
+            ":complex",
+            "x",
+            "y"
+          ],
+          [
+            "&+",
+            [
+              "&*",
+              "x",
+              "x"
+            ],
+            [
+              "&*",
+              "y",
+              "y"
+            ]
+          ]
+        ]
+      ]
+    ],
+    "doc": "",
+    "examples": [],
+    "ffi": null,
+    "ffi_edn": null,
+    "id": "quaternion.complex/c-length2",
+    "js_ffi": null,
+    "schema": [
+      "{}",
+      [
+        ":kind",
+        ":fn"
+      ],
+      [
+        ":return",
+        "'Number"
+      ],
+      [
+        ":args",
+        [
+          "[]",
+          "'quaternion.complex/Complex"
+        ]
+      ]
+    ],
+    "tags": [],
+    "tests": []
+  },
+  {
+    "code": [
+      "defn",
+      "c-scale",
+      [
+        "v",
+        "n"
+      ],
+      [
+        "match",
+        "v",
+        [
+          [
+            ":complex",
+            "x",
+            "y"
+          ],
+          [
+            "complex",
+            [
+              "&*",
+              "n",
+              "x"
+            ],
+            [
+              "&*",
+              "n",
+              "y"
+            ]
+          ]
+        ]
+      ]
+    ],
+    "doc": "",
+    "examples": [],
+    "ffi": null,
+    "ffi_edn": null,
+    "id": "quaternion.complex/c-scale",
+    "js_ffi": null,
+    "schema": [
+      "{}",
+      [
+        ":kind",
+        ":fn"
+      ],
+      [
+        ":return",
+        "'quaternion.complex/Complex"
+      ],
+      [
+        ":args",
+        [
+          "[]",
+          "'quaternion.complex/Complex",
+          "'Number"
+        ]
+      ]
+    ],
+    "tags": [],
+    "tests": []
+  },
+  {
+    "code": [
+      "defn",
+      "complex",
+      [
+        "x",
+        "y"
+      ],
+      [
+        "Complex",
+        ":complex",
+        "x",
+        "y"
+      ]
+    ],
+    "doc": "",
+    "examples": [],
+    "ffi": null,
+    "ffi_edn": null,
+    "id": "quaternion.complex/complex",
+    "js_ffi": null,
+    "schema": [
+      "{}",
+      [
+        ":kind",
+        ":fn"
+      ],
+      [
+        ":return",
+        "'quaternion.complex/Complex"
+      ],
+      [
+        ":args",
+        [
+          "[]",
+          "'Number",
+          "'Number"
+        ]
+      ]
+    ],
+    "tags": [],
+    "tests": []
+  },
+  {
+    "code": [
+      "defn",
+      "&q*",
+      [
+        "a",
+        "b"
+      ],
+      [
+        "match",
+        "a",
+        [
+          [
+            ":quaternion",
+            "w1",
+            "x1",
+            "y1",
+            "z1"
+          ],
+          [
+            "match",
+            "b",
+            [
+              [
+                ":quaternion",
+                "w2",
+                "x2",
+                "y2",
+                "z2"
+              ],
+              [
+                "quaternion",
+                [
+                  "->",
+                  [
+                    "&*",
+                    "w1",
+                    "w2"
+                  ],
+                  [
+                    "&-",
+                    [
+                      "&*",
+                      "x1",
+                      "x2"
+                    ]
+                  ],
+                  [
+                    "&-",
+                    [
+                      "&*",
+                      "y1",
+                      "y2"
+                    ]
+                  ],
+                  [
+                    "&-",
+                    [
+                      "&*",
+                      "z1",
+                      "z2"
+                    ]
+                  ]
+                ],
+                [
+                  "->",
+                  [
+                    "&*",
+                    "w1",
+                    "x2"
+                  ],
+                  [
+                    "&+",
+                    [
+                      "&*",
+                      "x1",
+                      "w2"
+                    ]
+                  ],
+                  [
+                    "&+",
+                    [
+                      "&*",
+                      "y1",
+                      "z2"
+                    ]
+                  ],
+                  [
+                    "&-",
+                    [
+                      "&*",
+                      "z1",
+                      "y2"
+                    ]
+                  ]
+                ],
+                [
+                  "->",
+                  [
+                    "&*",
+                    "w1",
+                    "y2"
+                  ],
+                  [
+                    "&-",
+                    [
+                      "&*",
+                      "x1",
+                      "z2"
+                    ]
+                  ],
+                  [
+                    "&+",
+                    [
+                      "&*",
+                      "y1",
+                      "w2"
+                    ]
+                  ],
+                  [
+                    "&+",
+                    [
+                      "&*",
+                      "z1",
+                      "x2"
+                    ]
+                  ]
+                ],
+                [
+                  "->",
+                  [
+                    "&*",
+                    "w1",
+                    "z2"
+                  ],
+                  [
+                    "&+",
+                    [
+                      "&*",
+                      "x1",
+                      "y2"
+                    ]
+                  ],
+                  [
+                    "&-",
+                    [
+                      "&*",
+                      "y1",
+                      "x2"
+                    ]
+                  ],
+                  [
+                    "&+",
+                    [
+                      "&*",
+                      "z1",
+                      "w2"
+                    ]
+                  ]
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ],
+    "doc": "",
+    "examples": [],
+    "ffi": null,
+    "ffi_edn": null,
+    "id": "quaternion.core/&q*",
+    "js_ffi": null,
+    "schema": [
+      "{}",
+      [
+        ":kind",
+        ":fn"
+      ],
+      [
+        ":return",
+        "'quaternion.core/Quaternion"
+      ],
+      [
+        ":args",
+        [
+          "[]",
+          "'quaternion.core/Quaternion",
+          "'quaternion.core/Quaternion"
+        ]
+      ]
+    ],
+    "tags": [],
+    "tests": []
+  },
+  {
+    "code": [
+      "defn",
+      "&q+",
+      [
+        "a",
+        "b"
+      ],
+      [
+        "match",
+        "a",
+        [
+          [
+            ":quaternion",
+            "w",
+            "x",
+            "y",
+            "z"
+          ],
+          [
+            "match",
+            "b",
+            [
+              [
+                ":quaternion",
+                "w1",
+                "x1",
+                "y1",
+                "z1"
+              ],
+              [
+                "quaternion",
+                [
+                  "&+",
+                  "w",
+                  "w1"
+                ],
+                [
+                  "&+",
+                  "x",
+                  "x1"
+                ],
+                [
+                  "&+",
+                  "y",
+                  "y1"
+                ],
+                [
+                  "&+",
+                  "z",
+                  "z1"
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ],
+    "doc": "",
+    "examples": [],
+    "ffi": null,
+    "ffi_edn": null,
+    "id": "quaternion.core/&q+",
+    "js_ffi": null,
+    "schema": [
+      "{}",
+      [
+        ":kind",
+        ":fn"
+      ],
+      [
+        ":return",
+        "'quaternion.core/Quaternion"
+      ],
+      [
+        ":args",
+        [
+          "[]",
+          "'quaternion.core/Quaternion",
+          "'quaternion.core/Quaternion"
+        ]
+      ]
+    ],
+    "tags": [],
+    "tests": []
+  },
+  {
+    "code": [
+      "defn",
+      "&q-",
+      [
+        "a",
+        "b"
+      ],
+      [
+        "match",
+        "a",
+        [
+          [
+            ":quaternion",
+            "w",
+            "x",
+            "y",
+            "z"
+          ],
+          [
+            "match",
+            "b",
+            [
+              [
+                ":quaternion",
+                "w1",
+                "x1",
+                "y1",
+                "z1"
+              ],
+              [
+                "quaternion",
+                [
+                  "&-",
+                  "w",
+                  "w1"
+                ],
+                [
+                  "&-",
+                  "x",
+                  "x1"
+                ],
+                [
+                  "&-",
+                  "y",
+                  "y1"
+                ],
+                [
+                  "&-",
+                  "z",
+                  "z1"
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ],
+    "doc": "",
+    "examples": [],
+    "ffi": null,
+    "ffi_edn": null,
+    "id": "quaternion.core/&q-",
+    "js_ffi": null,
+    "schema": [
+      "{}",
+      [
+        ":kind",
+        ":fn"
+      ],
+      [
+        ":return",
+        "'quaternion.core/Quaternion"
+      ],
+      [
+        ":args",
+        [
+          "[]",
+          "'quaternion.core/Quaternion",
+          "'quaternion.core/Quaternion"
+        ]
+      ]
+    ],
+    "tags": [],
+    "tests": []
+  },
+  {
+    "code": [
+      "defenum",
+      "Quaternion",
+      [
+        ":quaternion",
+        "'Number",
+        "'Number",
+        "'Number",
+        "'Number"
+      ]
+    ],
+    "doc": "",
+    "examples": [],
+    "ffi": null,
+    "ffi_edn": null,
+    "id": "quaternion.core/Quaternion",
+    "js_ffi": null,
+    "schema": "'EnumDef",
+    "tags": [],
+    "tests": []
+  },
+  {
+    "code": [
+      "defn",
+      "q+",
+      [
+        "&",
+        "xs"
+      ],
+      [
+        "foldl",
+        "xs",
+        [
+          "quaternion",
+          "0",
+          "0",
+          "0",
+          "0"
+        ],
+        [
+          "fn",
+          [
+            "acc",
+            "x"
+          ],
+          [
+            "&q+",
+            "acc",
+            "x"
+          ]
+        ]
+      ]
+    ],
+    "doc": "",
+    "examples": [],
+    "ffi": null,
+    "ffi_edn": null,
+    "id": "quaternion.core/q+",
+    "js_ffi": null,
+    "schema": [
+      "{}",
+      [
+        ":kind",
+        ":fn"
+      ],
+      [
+        ":rest",
+        "'quaternion.core/Quaternion"
+      ],
+      [
+        ":return",
+        "'quaternion.core/Quaternion"
+      ],
+      [
+        ":args",
+        [
+          "[]"
+        ]
+      ]
+    ],
+    "tags": [],
+    "tests": []
+  },
+  {
+    "code": [
+      "defn",
+      "q-",
+      [
+        "x",
+        "&",
+        "xs"
+      ],
+      [
+        "foldl",
+        "xs",
+        "x",
+        [
+          "fn",
+          [
+            "acc",
+            "item"
+          ],
+          [
+            "&q-",
+            "acc",
+            "item"
+          ]
+        ]
+      ]
+    ],
+    "doc": "",
+    "examples": [],
+    "ffi": null,
+    "ffi_edn": null,
+    "id": "quaternion.core/q-",
+    "js_ffi": null,
+    "schema": [
+      "{}",
+      [
+        ":kind",
+        ":fn"
+      ],
+      [
+        ":rest",
+        "'quaternion.core/Quaternion"
+      ],
+      [
+        ":return",
+        "'quaternion.core/Quaternion"
+      ],
+      [
+        ":args",
+        [
+          "[]",
+          "'quaternion.core/Quaternion"
+        ]
+      ]
+    ],
+    "tags": [],
+    "tests": []
+  },
+  {
+    "code": [
+      "defn",
+      "q-conjugate",
+      [
+        "a"
+      ],
+      [
+        "match",
+        "a",
+        [
+          [
+            ":quaternion",
+            "w",
+            "x",
+            "y",
+            "z"
+          ],
+          [
+            "quaternion",
+            "w",
+            [
+              "&-",
+              "0",
+              "x"
+            ],
+            [
+              "&-",
+              "0",
+              "y"
+            ],
+            [
+              "&-",
+              "0",
+              "z"
+            ]
+          ]
+        ]
+      ]
+    ],
+    "doc": "",
+    "examples": [],
+    "ffi": null,
+    "ffi_edn": null,
+    "id": "quaternion.core/q-conjugate",
+    "js_ffi": null,
+    "schema": [
+      "{}",
+      [
+        ":kind",
+        ":fn"
+      ],
+      [
+        ":return",
+        "'quaternion.core/Quaternion"
+      ],
+      [
+        ":args",
+        [
+          "[]",
+          "'quaternion.core/Quaternion"
+        ]
+      ]
+    ],
+    "tags": [],
+    "tests": []
+  },
+  {
+    "code": [
+      "defn",
+      "q-from-v3",
+      [
+        "v"
+      ],
+      [
+        "match",
+        "v",
+        [
+          [
+            ":v3",
+            "x",
+            "y",
+            "z"
+          ],
+          [
+            "quaternion",
+            "0",
+            "x",
+            "y",
+            "z"
+          ]
+        ]
+      ]
+    ],
+    "doc": "",
+    "examples": [],
+    "ffi": null,
+    "ffi_edn": null,
+    "id": "quaternion.core/q-from-v3",
+    "js_ffi": null,
+    "schema": [
+      "{}",
+      [
+        ":kind",
+        ":fn"
+      ],
+      [
+        ":return",
+        "'quaternion.core/Quaternion"
+      ],
+      [
+        ":args",
+        [
+          "[]",
+          "'quaternion.vector/V3"
+        ]
+      ]
+    ],
+    "tags": [],
+    "tests": []
+  },
+  {
+    "code": [
+      "defn",
+      "q-inverse",
+      [
+        "a"
+      ],
+      [
+        "let",
+        [
+          [
+            "l",
+            [
+              "q-length2",
+              "a"
+            ]
+          ]
+        ],
+        [
+          "if",
+          [
+            "&=",
+            "l",
+            "0"
+          ],
+          [
+            "eprintln",
+            "|length is zero:",
+            "a"
+          ]
+        ],
+        [
+          "q-scale",
+          [
+            "q-conjugate",
+            "a"
+          ],
+          [
+            "&/",
+            "1",
+            "l"
+          ]
+        ]
+      ]
+    ],
+    "doc": "",
+    "examples": [],
+    "ffi": null,
+    "ffi_edn": null,
+    "id": "quaternion.core/q-inverse",
+    "js_ffi": null,
+    "schema": [
+      "{}",
+      [
+        ":kind",
+        ":fn"
+      ],
+      [
+        ":return",
+        "'quaternion.core/Quaternion"
+      ],
+      [
+        ":args",
+        [
+          "[]",
+          "'quaternion.core/Quaternion"
+        ]
+      ]
+    ],
+    "tags": [],
+    "tests": []
+  },
+  {
+    "code": [
+      "defn",
+      "q-length",
+      [
+        "a"
+      ],
+      [
+        "match",
+        "a",
+        [
+          [
+            ":quaternion",
+            "w",
+            "x",
+            "y",
+            "z"
+          ],
+          [
+            "sqrt",
+            [
+              "->",
+              [
+                "&*",
+                "x",
+                "x"
+              ],
+              [
+                "&+",
+                [
+                  "&*",
+                  "y",
+                  "y"
+                ]
+              ],
+              [
+                "&+",
+                [
+                  "&*",
+                  "z",
+                  "z"
+                ]
+              ],
+              [
+                "&+",
+                [
+                  "&*",
+                  "w",
+                  "w"
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ],
+    "doc": "",
+    "examples": [],
+    "ffi": null,
+    "ffi_edn": null,
+    "id": "quaternion.core/q-length",
+    "js_ffi": null,
+    "schema": [
+      "{}",
+      [
+        ":kind",
+        ":fn"
+      ],
+      [
+        ":return",
+        "'Number"
+      ],
+      [
+        ":args",
+        [
+          "[]",
+          "'quaternion.core/Quaternion"
+        ]
+      ]
+    ],
+    "tags": [],
+    "tests": []
+  },
+  {
+    "code": [
+      "defn",
+      "q-length2",
+      [
+        "a"
+      ],
+      [
+        "match",
+        "a",
+        [
+          [
+            ":quaternion",
+            "w",
+            "x",
+            "y",
+            "z"
+          ],
+          [
+            "->",
+            [
+              "&*",
+              "x",
+              "x"
+            ],
+            [
+              "&+",
+              [
+                "&*",
+                "y",
+                "y"
+              ]
+            ],
+            [
+              "&+",
+              [
+                "&*",
+                "z",
+                "z"
+              ]
+            ],
+            [
+              "&+",
+              [
+                "&*",
+                "w",
+                "w"
+              ]
+            ]
+          ]
+        ]
+      ]
+    ],
+    "doc": "",
+    "examples": [],
+    "ffi": null,
+    "ffi_edn": null,
+    "id": "quaternion.core/q-length2",
+    "js_ffi": null,
+    "schema": [
+      "{}",
+      [
+        ":kind",
+        ":fn"
+      ],
+      [
+        ":return",
+        "'Number"
+      ],
+      [
+        ":args",
+        [
+          "[]",
+          "'quaternion.core/Quaternion"
+        ]
+      ]
+    ],
+    "tags": [],
+    "tests": []
+  },
+  {
+    "code": [
+      "defn",
+      "q-scale",
+      [
+        "v",
+        "n"
+      ],
+      [
+        "match",
+        "v",
+        [
+          [
+            ":quaternion",
+            "w",
+            "x",
+            "y",
+            "z"
+          ],
+          [
+            "quaternion",
+            [
+              "&*",
+              "n",
+              "w"
+            ],
+            [
+              "&*",
+              "n",
+              "x"
+            ],
+            [
+              "&*",
+              "n",
+              "y"
+            ],
+            [
+              "&*",
+              "n",
+              "z"
+            ]
+          ]
+        ]
+      ]
+    ],
+    "doc": "",
+    "examples": [],
+    "ffi": null,
+    "ffi_edn": null,
+    "id": "quaternion.core/q-scale",
+    "js_ffi": null,
+    "schema": [
+      "{}",
+      [
+        ":kind",
+        ":fn"
+      ],
+      [
+        ":return",
+        "'quaternion.core/Quaternion"
+      ],
+      [
+        ":args",
+        [
+          "[]",
+          "'quaternion.core/Quaternion",
+          "'Number"
+        ]
+      ]
+    ],
+    "tags": [],
+    "tests": []
+  },
+  {
+    "code": [
+      "defn",
+      "q-to-js",
+      [
+        "self"
+      ],
+      [
+        "match",
+        "self",
+        [
+          [
+            ":quaternion",
+            "s",
+            "x",
+            "y",
+            "z"
+          ],
+          [
+            "js-array",
+            "x",
+            "y",
+            "z",
+            "s"
+          ]
+        ]
+      ]
+    ],
+    "doc": "",
+    "examples": [],
+    "ffi": null,
+    "ffi_edn": null,
+    "id": "quaternion.core/q-to-js",
+    "js_ffi": null,
+    "schema": [
+      "{}",
+      [
+        ":kind",
+        ":fn"
+      ],
+      [
+        ":return",
+        "'JsObject"
+      ],
+      [
+        ":args",
+        [
+          "[]",
+          "'quaternion.core/Quaternion"
+        ]
+      ],
+      [
+        ":features",
+        [
+          "#{}",
+          ":js-ffi"
+        ]
+      ]
+    ],
+    "tags": [],
+    "tests": []
+  },
+  {
+    "code": [
+      "defn",
+      "q-to-v3",
+      [
+        "self"
+      ],
+      [
+        "match",
+        "self",
+        [
+          [
+            ":quaternion",
+            "s",
+            "x",
+            "y",
+            "z"
+          ],
+          [
+            "do",
+            [
+              "if",
+              [
+                "not=",
+                "s",
+                "0"
+              ],
+              [
+                "eprintln",
+                "|s is not zero in quaternion when converting"
+              ]
+            ],
+            [
+              "v3",
+              "x",
+              "y",
+              "z"
+            ]
+          ]
+        ]
+      ]
+    ],
+    "doc": "",
+    "examples": [],
+    "ffi": null,
+    "ffi_edn": null,
+    "id": "quaternion.core/q-to-v3",
+    "js_ffi": null,
+    "schema": [
+      "{}",
+      [
+        ":kind",
+        ":fn"
+      ],
+      [
+        ":return",
+        "'quaternion.vector/V3"
+      ],
+      [
+        ":args",
+        [
+          "[]",
+          "'quaternion.core/Quaternion"
+        ]
+      ]
+    ],
+    "tags": [],
+    "tests": []
+  },
+  {
+    "code": [
+      "defn",
+      "quaternion",
+      [
+        "s",
+        "x",
+        "y",
+        "z"
+      ],
+      [
+        "Quaternion",
+        ":quaternion",
+        "s",
+        "x",
+        "y",
+        "z"
+      ]
+    ],
+    "doc": "",
+    "examples": [],
+    "ffi": null,
+    "ffi_edn": null,
+    "id": "quaternion.core/quaternion",
+    "js_ffi": null,
+    "schema": [
+      "{}",
+      [
+        ":kind",
+        ":fn"
+      ],
+      [
+        ":return",
+        "'quaternion.core/Quaternion"
+      ],
+      [
+        ":args",
+        [
+          "[]",
+          "'Number",
+          "'Number",
+          "'Number",
+          "'Number"
+        ]
+      ]
+    ],
+    "tags": [],
+    "tests": []
+  },
+  {
+    "code": [
+      "defn",
+      "assertion-failure-probe!",
+      [],
+      [
+        "is",
+        "false"
+      ]
+    ],
+    "doc": "",
+    "examples": [],
+    "ffi": null,
+    "ffi_edn": null,
+    "id": "quaternion.test/assertion-failure-probe!",
+    "js_ffi": null,
+    "schema": [
+      "{}",
+      [
+        ":kind",
+        ":fn"
+      ],
+      [
+        ":return",
+        "'Unit"
+      ],
+      [
+        ":args",
+        [
+          "[]"
+        ]
+      ]
+    ],
+    "tags": [],
+    "tests": []
+  },
+  {
+    "code": [
+      "defn",
+      "main!",
+      [],
+      [
+        "run-tests"
+      ]
+    ],
+    "doc": "",
+    "examples": [],
+    "ffi": null,
+    "ffi_edn": null,
+    "id": "quaternion.test/main!",
+    "js_ffi": null,
+    "schema": [
+      "{}",
+      [
+        ":kind",
+        ":fn"
+      ],
+      [
+        ":return",
+        "'Unit"
+      ],
+      [
+        ":args",
+        [
+          "[]"
+        ]
+      ]
+    ],
+    "tags": [],
+    "tests": []
+  },
+  {
+    "code": [
+      "defn",
+      "reload!",
+      [],
+      [
+        "println",
+        "|reload..."
+      ],
+      [
+        "run-tests"
+      ]
+    ],
+    "doc": "",
+    "examples": [],
+    "ffi": null,
+    "ffi_edn": null,
+    "id": "quaternion.test/reload!",
+    "js_ffi": null,
+    "schema": [
+      "{}",
+      [
+        ":kind",
+        ":fn"
+      ],
+      [
+        ":return",
+        "'Unit"
+      ],
+      [
+        ":args",
+        [
+          "[]"
+        ]
+      ]
+    ],
+    "tags": [],
+    "tests": []
+  },
+  {
+    "code": [
+      "defn",
+      "run-tests",
+      [],
+      [
+        "test-add"
+      ],
+      [
+        "test-v-scale"
+      ],
+      [
+        "test-multiply"
+      ],
+      [
+        "test-complex"
+      ],
+      [
+        "test-v3"
+      ],
+      [
+        "test-quaternion"
+      ]
+    ],
+    "doc": "",
+    "examples": [],
+    "ffi": null,
+    "ffi_edn": null,
+    "id": "quaternion.test/run-tests",
+    "js_ffi": null,
+    "schema": [
+      "{}",
+      [
+        ":kind",
+        ":fn"
+      ],
+      [
+        ":return",
+        "'Unit"
+      ],
+      [
+        ":args",
+        [
+          "[]"
+        ]
+      ]
+    ],
+    "tags": [],
+    "tests": []
+  },
+  {
+    "code": [
+      "defn",
+      "test-add",
+      [],
+      "|multiply quaternion",
+      [
+        "is",
+        [
+          "=",
+          [
+            "quaternion",
+            "-60",
+            "12",
+            "30",
+            "24"
+          ],
+          [
+            "&q*",
+            [
+              "quaternion",
+              "1",
+              "2",
+              "3",
+              "4"
+            ],
+            [
+              "quaternion",
+              "5",
+              "6",
+              "7",
+              "8"
+            ]
+          ]
+        ]
+      ],
+      "|add complex",
+      [
+        "is",
+        [
+          "=",
+          [
+            "complex",
+            "9",
+            "12"
+          ],
+          [
+            "c+",
+            [
+              "complex",
+              "1",
+              "2"
+            ],
+            [
+              "complex",
+              "3",
+              "4"
+            ],
+            [
+              "complex",
+              "5",
+              "6"
+            ]
+          ]
+        ]
+      ],
+      [
+        "is",
+        [
+          "=",
+          [
+            "complex",
+            "4",
+            "6"
+          ],
+          [
+            "c+",
+            [
+              "complex",
+              "1",
+              "2"
+            ],
+            [
+              "complex",
+              "3",
+              "4"
+            ]
+          ]
+        ]
+      ]
+    ],
+    "doc": "",
+    "examples": [],
+    "ffi": null,
+    "ffi_edn": null,
+    "id": "quaternion.test/test-add",
+    "js_ffi": null,
+    "schema": [
+      "{}",
+      [
+        ":kind",
+        ":fn"
+      ],
+      [
+        ":return",
+        "'Unit"
+      ],
+      [
+        ":args",
+        [
+          "[]"
+        ]
+      ]
+    ],
+    "tags": [],
+    "tests": []
+  },
+  {
+    "code": [
+      "defn",
+      "test-complex",
+      [],
+      "|trying complex values",
+      [
+        "is",
+        [
+          "=",
+          [
+            "complex",
+            "2",
+            "-3"
+          ],
+          [
+            "c-conjugate",
+            [
+              "complex",
+              "2",
+              "3"
+            ]
+          ]
+        ]
+      ],
+      [
+        "is",
+        [
+          "=",
+          [
+            "complex",
+            "-7",
+            "22"
+          ],
+          [
+            "c*",
+            [
+              "complex",
+              "2",
+              "3"
+            ],
+            [
+              "complex",
+              "4",
+              "5"
+            ]
+          ]
+        ]
+      ],
+      [
+        "is",
+        [
+          "=",
+          [
+            "complex",
+            "-5",
+            "10"
+          ],
+          [
+            "c*",
+            [
+              "complex",
+              "1",
+              "2"
+            ],
+            [
+              "complex",
+              "3",
+              "4"
+            ]
+          ]
+        ]
+      ],
+      [
+        "is",
+        [
+          "=",
+          [
+            "complex",
+            "-85",
+            "20"
+          ],
+          [
+            "c*",
+            [
+              "complex",
+              "1",
+              "2"
+            ],
+            [
+              "complex",
+              "3",
+              "4"
+            ],
+            [
+              "complex",
+              "5",
+              "6"
+            ]
+          ]
+        ]
+      ]
+    ],
+    "doc": "",
+    "examples": [],
+    "ffi": null,
+    "ffi_edn": null,
+    "id": "quaternion.test/test-complex",
+    "js_ffi": null,
+    "schema": [
+      "{}",
+      [
+        ":kind",
+        ":fn"
+      ],
+      [
+        ":return",
+        "'Unit"
+      ],
+      [
+        ":args",
+        [
+          "[]"
+        ]
+      ]
+    ],
+    "tags": [],
+    "tests": []
+  },
+  {
+    "code": [
+      "defn",
+      "test-multiply",
+      [],
+      "|multiply complex",
+      [
+        "is",
+        [
+          "=",
+          [
+            "complex",
+            "-5",
+            "10"
+          ],
+          [
+            "&c*",
+            [
+              "complex",
+              "1",
+              "2"
+            ],
+            [
+              "complex",
+              "3",
+              "4"
+            ]
+          ]
+        ]
+      ],
+      [
+        "is",
+        [
+          "=",
+          [
+            "complex",
+            "-5",
+            "10"
+          ],
+          [
+            "c*",
+            [
+              "complex",
+              "1",
+              "2"
+            ],
+            [
+              "complex",
+              "3",
+              "4"
+            ]
+          ]
+        ]
+      ],
+      [
+        "is",
+        [
+          "=",
+          [
+            "complex",
+            "-85",
+            "20"
+          ],
+          [
+            "c*",
+            [
+              "complex",
+              "1",
+              "2"
+            ],
+            [
+              "complex",
+              "3",
+              "4"
+            ],
+            [
+              "complex",
+              "5",
+              "6"
+            ]
+          ]
+        ]
+      ]
+    ],
+    "doc": "",
+    "examples": [],
+    "ffi": null,
+    "ffi_edn": null,
+    "id": "quaternion.test/test-multiply",
+    "js_ffi": null,
+    "schema": [
+      "{}",
+      [
+        ":kind",
+        ":fn"
+      ],
+      [
+        ":return",
+        "'Unit"
+      ],
+      [
+        ":args",
+        [
+          "[]"
+        ]
+      ]
+    ],
+    "tags": [],
+    "tests": []
+  },
+  {
+    "code": [
+      "defn",
+      "test-quaternion",
+      [],
+      "|quaternion demos",
+      [
+        "is",
+        [
+          "=",
+          [
+            "quaternion",
+            "4",
+            "6",
+            "8",
+            "10"
+          ],
+          [
+            "q+",
+            [
+              "quaternion",
+              "0",
+              "1",
+              "2",
+              "3"
+            ],
+            [
+              "quaternion",
+              "4",
+              "5",
+              "6",
+              "7"
+            ]
+          ]
+        ]
+      ],
+      "|v3 to quaternion",
+      [
+        "is",
+        [
+          "=",
+          [
+            "v3",
+            "6",
+            "8",
+            "10"
+          ],
+          [
+            "q-to-v3",
+            [
+              "quaternion",
+              "4",
+              "6",
+              "8",
+              "10"
+            ]
+          ]
+        ]
+      ],
+      [
+        "let",
+        [
+          [
+            "converted",
+            [
+              "q-from-v3",
+              [
+                "v3",
+                "6",
+                "8",
+                "10"
+              ]
+            ]
+          ]
+        ],
+        [
+          "is",
+          [
+            "=",
+            "converted",
+            [
+              "quaternion",
+              "0",
+              "6",
+              "8",
+              "10"
+            ]
+          ]
+        ]
+      ],
+      "|add multiple q",
+      [
+        "is",
+        [
+          "=",
+          [
+            "quaternion",
+            "6",
+            "6",
+            "6",
+            "6"
+          ],
+          [
+            "q+",
+            [
+              "quaternion",
+              "1",
+              "1",
+              "1",
+              "1"
+            ],
+            [
+              "quaternion",
+              "2",
+              "2",
+              "2",
+              "2"
+            ],
+            [
+              "quaternion",
+              "3",
+              "3",
+              "3",
+              "3"
+            ]
+          ]
+        ]
+      ]
+    ],
+    "doc": "",
+    "examples": [],
+    "ffi": null,
+    "ffi_edn": null,
+    "id": "quaternion.test/test-quaternion",
+    "js_ffi": null,
+    "schema": [
+      "{}",
+      [
+        ":kind",
+        ":fn"
+      ],
+      [
+        ":return",
+        "'Unit"
+      ],
+      [
+        ":args",
+        [
+          "[]"
+        ]
+      ]
+    ],
+    "tags": [],
+    "tests": []
+  },
+  {
+    "code": [
+      "defn",
+      "test-v-scale",
+      [],
+      "|v-scale",
+      [
+        "is",
+        [
+          "=",
+          [
+            "v-scale",
+            [
+              "v3",
+              "1",
+              "2",
+              "3"
+            ],
+            "4"
+          ],
+          [
+            "v3",
+            "4",
+            "8",
+            "12"
+          ]
+        ]
+      ],
+      [
+        "is",
+        [
+          "=",
+          [
+            "c-scale",
+            [
+              "complex",
+              "1",
+              "2"
+            ],
+            "3"
+          ],
+          [
+            "complex",
+            "3",
+            "6"
+          ]
+        ]
+      ]
+    ],
+    "doc": "",
+    "examples": [],
+    "ffi": null,
+    "ffi_edn": null,
+    "id": "quaternion.test/test-v-scale",
+    "js_ffi": null,
+    "schema": [
+      "{}",
+      [
+        ":kind",
+        ":fn"
+      ],
+      [
+        ":return",
+        "'Unit"
+      ],
+      [
+        ":args",
+        [
+          "[]"
+        ]
+      ]
+    ],
+    "tags": [],
+    "tests": []
+  },
+  {
+    "code": [
+      "defn",
+      "test-v3",
+      [],
+      "|trying v3 values",
+      [
+        "is",
+        [
+          "=",
+          [
+            "v3",
+            "5",
+            "7",
+            "9"
+          ],
+          [
+            "v+",
+            [
+              "v3",
+              "1",
+              "2",
+              "3"
+            ],
+            [
+              "v3",
+              "4",
+              "5",
+              "6"
+            ]
+          ]
+        ]
+      ],
+      [
+        "is",
+        [
+          "=",
+          "0",
+          [
+            "v-dot",
+            [
+              "v3",
+              "0",
+              "1",
+              "0"
+            ],
+            [
+              "v3",
+              "1",
+              "0",
+              "0"
+            ]
+          ]
+        ]
+      ],
+      [
+        "is",
+        [
+          "=",
+          [
+            "v3",
+            "0",
+            "0",
+            "-1"
+          ],
+          [
+            "v-cross",
+            [
+              "v3",
+              "0",
+              "1",
+              "0"
+            ],
+            [
+              "v3",
+              "1",
+              "0",
+              "0"
+            ]
+          ]
+        ]
+      ],
+      [
+        "is",
+        [
+          "=",
+          [
+            "v3",
+            "12",
+            "15",
+            "18"
+          ],
+          [
+            "v+",
+            [
+              "v3",
+              "1",
+              "2",
+              "3"
+            ],
+            [
+              "v3",
+              "4",
+              "5",
+              "6"
+            ],
+            [
+              "v3",
+              "7",
+              "8",
+              "9"
+            ]
+          ]
+        ]
+      ],
+      [
+        "is",
+        [
+          "=",
+          [
+            "sqrt",
+            "14"
+          ],
+          [
+            "v-length",
+            [
+              "v3",
+              "1",
+              "2",
+              "3"
+            ]
+          ]
+        ]
+      ]
+    ],
+    "doc": "",
+    "examples": [],
+    "ffi": null,
+    "ffi_edn": null,
+    "id": "quaternion.test/test-v3",
+    "js_ffi": null,
+    "schema": [
+      "{}",
+      [
+        ":kind",
+        ":fn"
+      ],
+      [
+        ":return",
+        "'Unit"
+      ],
+      [
+        ":args",
+        [
+          "[]"
+        ]
+      ]
+    ],
+    "tags": [],
+    "tests": []
+  },
+  {
+    "code": [
+      "defn",
+      "&v+",
+      [
+        "a",
+        "b"
+      ],
+      [
+        "match",
+        "a",
+        [
+          [
+            ":v3",
+            "x",
+            "y",
+            "z"
+          ],
+          [
+            "match",
+            "b",
+            [
+              [
+                ":v3",
+                "x2",
+                "y2",
+                "z2"
+              ],
+              [
+                "v3",
+                [
+                  "&+",
+                  "x",
+                  "x2"
+                ],
+                [
+                  "&+",
+                  "y",
+                  "y2"
+                ],
+                [
+                  "&+",
+                  "z",
+                  "z2"
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ],
+    "doc": "",
+    "examples": [],
+    "ffi": null,
+    "ffi_edn": null,
+    "id": "quaternion.vector/&v+",
+    "js_ffi": null,
+    "schema": [
+      "{}",
+      [
+        ":kind",
+        ":fn"
+      ],
+      [
+        ":return",
+        "'quaternion.vector/V3"
+      ],
+      [
+        ":args",
+        [
+          "[]",
+          "'quaternion.vector/V3",
+          "'quaternion.vector/V3"
+        ]
+      ]
+    ],
+    "tags": [],
+    "tests": []
+  },
+  {
+    "code": [
+      "defn",
+      "&v-",
+      [
+        "a",
+        "b"
+      ],
+      [
+        "match",
+        "a",
+        [
+          [
+            ":v3",
+            "x",
+            "y",
+            "z"
+          ],
+          [
+            "match",
+            "b",
+            [
+              [
+                ":v3",
+                "x2",
+                "y2",
+                "z2"
+              ],
+              [
+                "v3",
+                [
+                  "&-",
+                  "x",
+                  "x2"
+                ],
+                [
+                  "&-",
+                  "y",
+                  "y2"
+                ],
+                [
+                  "&-",
+                  "z",
+                  "z2"
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ],
+    "doc": "",
+    "examples": [],
+    "ffi": null,
+    "ffi_edn": null,
+    "id": "quaternion.vector/&v-",
+    "js_ffi": null,
+    "schema": [
+      "{}",
+      [
+        ":kind",
+        ":fn"
+      ],
+      [
+        ":return",
+        "'quaternion.vector/V3"
+      ],
+      [
+        ":args",
+        [
+          "[]",
+          "'quaternion.vector/V3",
+          "'quaternion.vector/V3"
+        ]
+      ]
+    ],
+    "tags": [],
+    "tests": []
+  },
+  {
+    "code": [
+      "defenum",
+      "V3",
+      [
+        ":v3",
+        "'Number",
+        "'Number",
+        "'Number"
+      ]
+    ],
+    "doc": "",
+    "examples": [],
+    "ffi": null,
+    "ffi_edn": null,
+    "id": "quaternion.vector/V3",
+    "js_ffi": null,
+    "schema": "'EnumDef",
+    "tags": [],
+    "tests": []
+  },
+  {
+    "code": [
+      "defn",
+      "v+",
+      [
+        "&",
+        "xs"
+      ],
+      [
+        "foldl",
+        "xs",
+        [
+          "v3",
+          "0",
+          "0",
+          "0"
+        ],
+        [
+          "fn",
+          [
+            "acc",
+            "x"
+          ],
+          [
+            "&v+",
+            "acc",
+            "x"
+          ]
+        ]
+      ]
+    ],
+    "doc": "",
+    "examples": [],
+    "ffi": null,
+    "ffi_edn": null,
+    "id": "quaternion.vector/v+",
+    "js_ffi": null,
+    "schema": [
+      "{}",
+      [
+        ":kind",
+        ":fn"
+      ],
+      [
+        ":rest",
+        "'quaternion.vector/V3"
+      ],
+      [
+        ":return",
+        "'quaternion.vector/V3"
+      ],
+      [
+        ":args",
+        [
+          "[]"
+        ]
+      ]
+    ],
+    "tags": [],
+    "tests": []
+  },
+  {
+    "code": [
+      "defn",
+      "v-",
+      [
+        "x",
+        "&",
+        "xs"
+      ],
+      [
+        "foldl",
+        "xs",
+        "x",
+        [
+          "fn",
+          [
+            "acc",
+            "item"
+          ],
+          [
+            "&v-",
+            "acc",
+            "item"
+          ]
+        ]
+      ]
+    ],
+    "doc": "",
+    "examples": [],
+    "ffi": null,
+    "ffi_edn": null,
+    "id": "quaternion.vector/v-",
+    "js_ffi": null,
+    "schema": [
+      "{}",
+      [
+        ":kind",
+        ":fn"
+      ],
+      [
+        ":rest",
+        "'quaternion.vector/V3"
+      ],
+      [
+        ":return",
+        "'quaternion.vector/V3"
+      ],
+      [
+        ":args",
+        [
+          "[]",
+          "'quaternion.vector/V3"
+        ]
+      ]
+    ],
+    "tags": [],
+    "tests": []
+  },
+  {
+    "code": [
+      "defn",
+      "v-cross",
+      [
+        "v1",
+        "v2"
+      ],
+      [
+        "match",
+        "v1",
+        [
+          [
+            ":v3",
+            "x1",
+            "y1",
+            "z1"
+          ],
+          [
+            "match",
+            "v2",
+            [
+              [
+                ":v3",
+                "x2",
+                "y2",
+                "z2"
+              ],
+              [
+                "v3",
+                [
+                  "&-",
+                  [
+                    "&*",
+                    "y1",
+                    "z2"
+                  ],
+                  [
+                    "&*",
+                    "y2",
+                    "z1"
+                  ]
+                ],
+                [
+                  "&-",
+                  [
+                    "&*",
+                    "x2",
+                    "z1"
+                  ],
+                  [
+                    "&*",
+                    "x1",
+                    "z2"
+                  ]
+                ],
+                [
+                  "&-",
+                  [
+                    "&*",
+                    "x1",
+                    "y2"
+                  ],
+                  [
+                    "&*",
+                    "x2",
+                    "y1"
+                  ]
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ],
+    "doc": "",
+    "examples": [],
+    "ffi": null,
+    "ffi_edn": null,
+    "id": "quaternion.vector/v-cross",
+    "js_ffi": null,
+    "schema": [
+      "{}",
+      [
+        ":kind",
+        ":fn"
+      ],
+      [
+        ":return",
+        "'quaternion.vector/V3"
+      ],
+      [
+        ":args",
+        [
+          "[]",
+          "'quaternion.vector/V3",
+          "'quaternion.vector/V3"
+        ]
+      ]
+    ],
+    "tags": [],
+    "tests": []
+  },
+  {
+    "code": [
+      "defn",
+      "v-dot",
+      [
+        "v1",
+        "v2"
+      ],
+      [
+        "match",
+        "v1",
+        [
+          [
+            ":v3",
+            "x1",
+            "y1",
+            "z1"
+          ],
+          [
+            "match",
+            "v2",
+            [
+              [
+                ":v3",
+                "x2",
+                "y2",
+                "z2"
+              ],
+              [
+                "->",
+                [
+                  "&*",
+                  "x1",
+                  "x2"
+                ],
+                [
+                  "&+",
+                  [
+                    "&*",
+                    "y1",
+                    "y2"
+                  ]
+                ],
+                [
+                  "&+",
+                  [
+                    "&*",
+                    "z1",
+                    "z2"
+                  ]
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ],
+    "doc": "",
+    "examples": [],
+    "ffi": null,
+    "ffi_edn": null,
+    "id": "quaternion.vector/v-dot",
+    "js_ffi": null,
+    "schema": [
+      "{}",
+      [
+        ":kind",
+        ":fn"
+      ],
+      [
+        ":return",
+        "'Number"
+      ],
+      [
+        ":args",
+        [
+          "[]",
+          "'quaternion.vector/V3",
+          "'quaternion.vector/V3"
+        ]
+      ]
+    ],
+    "tags": [],
+    "tests": []
+  },
+  {
+    "code": [
+      "defn",
+      "v-length",
+      [
+        "a"
+      ],
+      [
+        "match",
+        "a",
+        [
+          [
+            ":v3",
+            "x",
+            "y",
+            "z"
+          ],
+          [
+            "sqrt",
+            [
+              "->",
+              [
+                "&*",
+                "x",
+                "x"
+              ],
+              [
+                "&+",
+                [
+                  "&*",
+                  "y",
+                  "y"
+                ]
+              ],
+              [
+                "&+",
+                [
+                  "&*",
+                  "z",
+                  "z"
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ],
+    "doc": "",
+    "examples": [],
+    "ffi": null,
+    "ffi_edn": null,
+    "id": "quaternion.vector/v-length",
+    "js_ffi": null,
+    "schema": [
+      "{}",
+      [
+        ":kind",
+        ":fn"
+      ],
+      [
+        ":return",
+        "'Number"
+      ],
+      [
+        ":args",
+        [
+          "[]",
+          "'quaternion.vector/V3"
+        ]
+      ]
+    ],
+    "tags": [],
+    "tests": []
+  },
+  {
+    "code": [
+      "defn",
+      "v-normalize",
+      [
+        "v"
+      ],
+      [
+        "match",
+        "v",
+        [
+          [
+            ":v3",
+            "x",
+            "y",
+            "z"
+          ],
+          [
+            "let",
+            [
+              [
+                "length",
+                [
+                  "sqrt",
+                  [
+                    "->",
+                    [
+                      "&*",
+                      "x",
+                      "x"
+                    ],
+                    [
+                      "&+",
+                      [
+                        "&*",
+                        "y",
+                        "y"
+                      ]
+                    ],
+                    [
+                      "&+",
+                      [
+                        "&*",
+                        "z",
+                        "z"
+                      ]
+                    ]
+                  ]
+                ]
+              ]
+            ],
+            [
+              "if",
+              [
+                "&=",
+                "length",
+                "0"
+              ],
+              [
+                "eprintln",
+                "|Unexpected zero length:",
+                "length"
+              ]
+            ],
+            [
+              "v-scale",
+              "v",
+              [
+                "&/",
+                "1",
+                "length"
+              ]
+            ]
+          ]
+        ]
+      ]
+    ],
+    "doc": "",
+    "examples": [],
+    "ffi": null,
+    "ffi_edn": null,
+    "id": "quaternion.vector/v-normalize",
+    "js_ffi": null,
+    "schema": [
+      "{}",
+      [
+        ":kind",
+        ":fn"
+      ],
+      [
+        ":return",
+        "'quaternion.vector/V3"
+      ],
+      [
+        ":args",
+        [
+          "[]",
+          "'quaternion.vector/V3"
+        ]
+      ]
+    ],
+    "tags": [],
+    "tests": []
+  },
+  {
+    "code": [
+      "defn",
+      "v-reflect",
+      [
+        "a",
+        "base"
+      ],
+      [
+        "let",
+        [
+          [
+            "base0",
+            [
+              "v-normalize",
+              "base"
+            ]
+          ],
+          [
+            "l",
+            [
+              "v-dot",
+              "a",
+              "base0"
+            ]
+          ],
+          [
+            "a-shadow",
+            [
+              "v-scale",
+              "base0",
+              "l"
+            ]
+          ],
+          [
+            "b",
+            [
+              "&v-",
+              "a",
+              "a-shadow"
+            ]
+          ]
+        ],
+        [
+          "&v-",
+          "a-shadow",
+          "b"
+        ]
+      ]
+    ],
+    "doc": "",
+    "examples": [],
+    "ffi": null,
+    "ffi_edn": null,
+    "id": "quaternion.vector/v-reflect",
+    "js_ffi": null,
+    "schema": [
+      "{}",
+      [
+        ":kind",
+        ":fn"
+      ],
+      [
+        ":return",
+        "'quaternion.vector/V3"
+      ],
+      [
+        ":args",
+        [
+          "[]",
+          "'quaternion.vector/V3",
+          "'quaternion.vector/V3"
+        ]
+      ]
+    ],
+    "tags": [],
+    "tests": []
+  },
+  {
+    "code": [
+      "defn",
+      "v-scale",
+      [
+        "v",
+        "n"
+      ],
+      [
+        "match",
+        "v",
+        [
+          [
+            ":v3",
+            "x",
+            "y",
+            "z"
+          ],
+          [
+            "v3",
+            [
+              "&*",
+              "n",
+              "x"
+            ],
+            [
+              "&*",
+              "n",
+              "y"
+            ],
+            [
+              "&*",
+              "n",
+              "z"
+            ]
+          ]
+        ]
+      ]
+    ],
+    "doc": "",
+    "examples": [],
+    "ffi": null,
+    "ffi_edn": null,
+    "id": "quaternion.vector/v-scale",
+    "js_ffi": null,
+    "schema": [
+      "{}",
+      [
+        ":kind",
+        ":fn"
+      ],
+      [
+        ":return",
+        "'quaternion.vector/V3"
+      ],
+      [
+        ":args",
+        [
+          "[]",
+          "'quaternion.vector/V3",
+          "'Number"
+        ]
+      ]
+    ],
+    "tags": [],
+    "tests": []
+  },
+  {
+    "code": [
+      "defn",
+      "v3",
+      [
+        "x",
+        "y",
+        "z"
+      ],
+      [
+        "V3",
+        ":v3",
+        "x",
+        "y",
+        "z"
+      ]
+    ],
+    "doc": "",
+    "examples": [],
+    "ffi": null,
+    "ffi_edn": null,
+    "id": "quaternion.vector/v3",
+    "js_ffi": null,
+    "schema": [
+      "{}",
+      [
+        ":kind",
+        ":fn"
+      ],
+      [
+        ":return",
+        "'quaternion.vector/V3"
+      ],
+      [
+        ":args",
+        [
+          "[]",
+          "'Number",
+          "'Number",
+          "'Number"
+        ]
+      ]
+    ],
+    "tags": [],
+    "tests": []
+  }
+]
