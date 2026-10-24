@@ -37,7 +37,7 @@ jobs:
         caps verify --toolchain
 
     - name: Verify canonical Snapshot
-      run: calcit calcit.cirru edit format && git diff --exit-code -- calcit.cirru
+      run: calcit calcit.cirru edit format && git diff --exit-code --quiet -- calcit.cirru
 
     - name: Check Calcit and static quality
       run: |
@@ -45,7 +45,7 @@ jobs:
         calcit calcit.cirru --check-only --all-defs
         calcit calcit.cirru --entry test --check-only
         calcit calcit.cirru --check-only --ns quaternion.complex --ns quaternion.vector --ns quaternion.core --summary-only
-        calcit calcit.cirru fix --workflow strict --verify
+        calcit calcit.cirru fix --workflow strict --verify --format json | jq -e 'if .data.workflow.status == "passed" and .diagnostics == [] then true else ., false end'
         calcit calcit.cirru analyze weak-types --summary-only --format json | jq -e '.data.summary.hits == 0'
         calcit calcit.cirru analyze weak-types --only coverage --coverage-level none,partial --summary-only --format json | jq -e '.data.summary.definitions == 0'
         calcit calcit.cirru analyze weak-types --only deprecated-call --summary-only --format json | jq -e '.data.summary.calls == 0'

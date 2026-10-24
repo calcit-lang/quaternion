@@ -57,14 +57,12 @@
           :schema $ :: 'EnumDef
         'c* $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defn c* (& xs)
-            foldl xs (complex 1 0)
-              fn (acc x) (&c* acc x)
+            .foldl xs (complex 1 0) &c*
           :examples $ []
           :schema $ :: 'Fn $ {} (:rest 'quaternion.complex/Complex) (:return 'quaternion.complex/Complex)
             :args $ []
         'c+ $ %{} 'CodeEntry (:doc |)
-          :code $ quote $ defn c+ (x & xs)
-            foldl xs x $ fn (acc item) (&c+ acc item)
+          :code $ quote $ defn c+ (x & xs) (.foldl xs x &c+)
           :examples $ []
           :schema $ :: 'Fn $ {} (:rest 'quaternion.complex/Complex) (:return 'quaternion.complex/Complex)
             :args $ [] 'quaternion.complex/Complex
@@ -161,14 +159,12 @@
           :schema $ :: 'EnumDef
         'q+ $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defn q+ (& xs)
-            foldl xs (quaternion 0 0 0 0)
-              fn (acc x) (&q+ acc x)
+            .foldl xs (quaternion 0 0 0 0) &q+
           :examples $ []
           :schema $ :: 'Fn $ {} (:rest 'quaternion.core/Quaternion) (:return 'quaternion.core/Quaternion)
             :args $ []
         'q- $ %{} 'CodeEntry (:doc |)
-          :code $ quote $ defn q- (x & xs)
-            foldl xs x $ fn (acc item) (&q- acc item)
+          :code $ quote $ defn q- (x & xs) (.foldl xs x &q-)
           :examples $ []
           :schema $ :: 'Fn $ {} (:rest 'quaternion.core/Quaternion) (:return 'quaternion.core/Quaternion)
             :args $ [] 'quaternion.core/Quaternion
@@ -388,14 +384,12 @@
           :schema $ :: 'EnumDef
         'v+ $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defn v+ (& xs)
-            foldl xs (v3 0 0 0)
-              fn (acc x) (&v+ acc x)
+            .foldl xs (v3 0 0 0) &v+
           :examples $ []
           :schema $ :: 'Fn $ {} (:rest 'quaternion.vector/V3) (:return 'quaternion.vector/V3)
             :args $ []
         'v- $ %{} 'CodeEntry (:doc |)
-          :code $ quote $ defn v- (x & xs)
-            foldl xs x $ fn (acc item) (&v- acc item)
+          :code $ quote $ defn v- (x & xs) (.foldl xs x &v-)
           :examples $ []
           :schema $ :: 'Fn $ {} (:rest 'quaternion.vector/V3) (:return 'quaternion.vector/V3)
             :args $ [] 'quaternion.vector/V3
