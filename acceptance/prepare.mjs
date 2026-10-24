@@ -20,6 +20,11 @@ const operations=[];
 for(const id of ids){
   const d=expected.find(d=>d.id===id);assert.equal(d.code[3][0],'foldl');assert.equal(d.code[3].length,4);
   d.code[3][0]='.foldl';
+  const reducer=d.code[3][3];
+  assert.equal(reducer[0],'fn');assert.equal(reducer.length,3);
+  assert.deepEqual(reducer[2].slice(1),reducer[1]);
+  assert.ok(['&c*','&c+','&q+','&q-','&v+','&v-'].includes(reducer[2][0]));
+  d.code[3][3]=reducer[2][0];
   operations.push(['edit','def',id,'--overwrite','--input-format','json-ast','--code',JSON.stringify(d.code)]);
 }
 writeFileSync('acceptance/before.json',JSON.stringify(before,null,2));
@@ -28,7 +33,7 @@ const args=['edit','transaction','--file','acceptance/operations.json','--format
 const preview=JSON.parse(run(...args,'--dry-run'));assert.ok(preview.scoped_revision);
 writeFileSync('acceptance/preview.json',JSON.stringify(preview,null,2));
 writeFileSync('acceptance/applied.json',run(...args,'--expect-revision',preview.scoped_revision));
-assert.deepEqual(inventory(),expected,'All50completeviews:only6foldlheadschange;allschemas/FFI/docs/mathassertions unchanged');
+assert.deepEqual(inventory(),expected,'All50completeviews:only6foldlheads+directexistingtypedreducerschange;allschemas/FFI/docs/mathassertions unchanged');
 assert.deepEqual(q('config'),config);
 writeFileSync('acceptance/after.json',JSON.stringify(expected,null,2));
 writeFileSync('acceptance/snapshot-blob.txt',execFileSync('git',['hash-object','calcit.cirru'],{encoding:'utf8'}));
