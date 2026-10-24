@@ -73,11 +73,13 @@ match q
 
 ### Workflow
 
-使用者影响：本轮模块 0.2.16 候选将 Calcit 与 `@calcit/procs` 配对到正式
-0.30.1，保留当前具名类型契约、坐标顺序、原有数值算法及 native/JavaScript 断言。
-源码 Snapshot 不变，不需要重写四元数数据；不添加 COS/CDN 或应用部署。
-0.2.15 已发布标签仍保持 alpha.5 配对的原内容，不覆盖旧 tag；0.2.16 在正式
-tag 发布前仅为候选。仍使用 Calcit 0.30.0 的消费者保留模块 0.2.14。
+使用者影响：模块 0.2.16 已将 Calcit 与 `@calcit/procs` 配对到正式 0.30.1。
+本轮仅把六处 List 归约调用从 `foldl` 迁为 `.foldl`，保持从左到右的归约顺序、
+初值、具名类型契约、坐标顺序、原有数值算法及 native/JavaScript 断言。
+归约直接传入已有的二元运算函数，省去只转发参数的匿名函数，并使用其现有具体类型合同。
+不需要重写四元数数据，不改变 `q-to-js` 的原生数组合同；不添加 COS/CDN 或应用部署。
+0.2.15 已发布标签仍保持 alpha.5 配对的原内容，不覆盖旧 tag；本轮源码清理不覆盖
+已发布的 0.2.16 标签，也不单独抢先发版。仍使用 Calcit 0.30.0 的消费者保留模块 0.2.14。
 
 The compiler and `@calcit/procs` are paired at formal 0.30.1. Linux CI verifies
 the paired toolchain; it is not an all-platform runtime guarantee. Use Node 24
