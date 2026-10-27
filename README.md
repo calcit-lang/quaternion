@@ -1,5 +1,9 @@
 ## Quaternion Math for Calcit
 
+当前候选将 CLI 与 `@calcit/procs` 成对升级到正式 `0.31.0`，保留源码、公开数值合同、
+`q-to-js` 的原生数组与坐标顺序。消费者需同步工具链并重新生成 JS；原数值断言、
+跨后端失败探针、零类型债务门禁和完整 strict 继续验收，不新增部署或发布 tag。
+
 TODO.
 
 Function names are boring since Calcit lacks performance polymorphism. You might want [Quaternion in Rust](https://github.com/Quatrefoil-GL/quaternions/).
@@ -71,7 +75,7 @@ match q
 
 这只是说明既有返回合同，不改变 q-to-js 的宿主类型或数组表示。
 
-### Workflow
+### 历史：0.30.1 工作流与源码迁移
 
 使用者影响：模块 0.2.16 已将 Calcit 与 `@calcit/procs` 配对到正式 0.30.1。
 本轮仅把六处 List 归约调用从 `foldl` 迁为 `.foldl`，保持从左到右的归约顺序、
