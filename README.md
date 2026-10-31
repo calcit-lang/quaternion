@@ -1,12 +1,12 @@
 ## Quaternion Math for Calcit
 
-### 0.2.18 候选：使用者影响
+### 0.2.19 候选：使用者影响
 
-本候选配对正式 Calcit CLI / `@calcit/procs` **0.32.0**；消费者需同步工具链并重新生成 JS。已发布 0.2.17 保留原 0.31.0 配对，不覆盖旧 tag；发布前不用 main 或 commit 替代正式依赖。
+本候选配对正式 Calcit CLI / `@calcit/procs` **0.32.1**；消费者需同步工具链并重新生成 JS。仍使用 0.32.0 的消费者可保留已发布 0.2.18，旧 tag 不移动；本候选不代表已发布 Git tag。
 
-官方 format 规范化类型存储表示，48 个定义的完整查询视图保持一致。数学算法、操作顺序、公开数值类型与 `q-to-js` 的 JavaScript Array / `[x, y, z, w]` 坐标合同均不变。原数值断言、native/JS 失败探针、零类型债务门禁和完整 strict 全部保留，不增加验证脚本、不放宽预算，不发布 npm 或部署 Demo。
+本次不修改 Snapshot、数学算法、操作顺序、公开数值类型或 `q-to-js` 的 JavaScript Array / `[x, y, z, w]` 坐标合同。原 native/JS 数值断言、失败探针、零类型债务门禁和完整 strict 全部保留，不增加验证脚本或预算，不发布 npm 或部署 Demo。
 
-此前 0.2.17 的六处 List 归约写法迁移（c*、c+、q+、q-、v+、v-）继续保留。0.32.0 的 native 容器身份语义变化不涉及本项目现有调用；具体接受范围仍以原数学测试和正反断言验收为准。
+此前六处 List 归约迁移（c*、c+、q+、q-、v+、v-）继续保留。0.32.0 的 native 容器身份语义变化不涉及本项目现有调用；实际范围仍以原数学测试和正反断言验收为准。
 
 TODO.
 
@@ -73,8 +73,9 @@ Quaternion math under `quaternion.core`:
 同时保留坐标顺序。例如已有 Quaternion 可在明确的适配边界提取为：
 
 ```cirru.no-check
-match q
-  (:quaternion w x y z) ([] x y z w)
+match q $
+  :quaternion w x y z
+  [] x y z w
 ```
 
 这只是说明既有返回合同，不改变 q-to-js 的宿主类型或数组表示。
@@ -89,7 +90,7 @@ match q
 0.2.15 已发布标签仍保持 alpha.5 配对的原内容，不覆盖旧 tag；本轮源码清理不覆盖
 已发布的 0.2.16 标签，也不单独抢先发版。仍使用 Calcit 0.30.0 的消费者保留模块 0.2.14。
 
-The compiler and `@calcit/procs` are paired at formal 0.30.1. Linux CI verifies
+Current source pairs the compiler and `@calcit/procs` at formal 0.32.1. Linux CI verifies
 the paired toolchain; it is not an all-platform runtime guarantee. Use Node 24
 and Yarn 4.18.0 with the node-modules linker.
 
@@ -98,7 +99,7 @@ caps --strict --ci
 yarn install --immutable
 caps verify --toolchain
 calcit edit format
-git diff --exit-code -- calcit.cirru
+git diff --exit-code --quiet -- calcit.cirru
 calcit --check-only --all-defs
 calcit --entry test --check-only
 calcit --check-only --ns quaternion.complex --ns quaternion.vector --ns quaternion.core --summary-only
