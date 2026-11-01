@@ -49,7 +49,7 @@
           :examples $ []
           :schema $ quote $ Fn quaternion.complex/Complex quaternion.complex/Complex (-> quaternion.complex/Complex)
         'Complex $ %{} 'CodeEntry (:doc |)
-          :code $ quote $ defenum Complex (:complex 'Number 'Number)
+          :code $ quote $ defenum Complex (:complex Number Number)
           :examples $ []
           :schema $ quote EnumDef
         'c* $ %{} 'CodeEntry (:doc |)
@@ -141,7 +141,7 @@
           :examples $ []
           :schema $ quote $ Fn quaternion.core/Quaternion quaternion.core/Quaternion (-> quaternion.core/Quaternion)
         'Quaternion $ %{} 'CodeEntry (:doc |)
-          :code $ quote $ defenum Quaternion (:quaternion 'Number 'Number 'Number 'Number)
+          :code $ quote $ defenum Quaternion (:quaternion Number Number Number Number)
           :examples $ []
           :schema $ quote EnumDef
         'q+ $ %{} 'CodeEntry (:doc |)
@@ -342,7 +342,7 @@
           :examples $ []
           :schema $ quote $ Fn quaternion.vector/V3 quaternion.vector/V3 (-> quaternion.vector/V3)
         'V3 $ %{} 'CodeEntry (:doc |)
-          :code $ quote $ defenum V3 (:v3 'Number 'Number 'Number)
+          :code $ quote $ defenum V3 (:v3 Number Number Number)
           :examples $ []
           :schema $ quote EnumDef
         'v+ $ %{} 'CodeEntry (:doc |)

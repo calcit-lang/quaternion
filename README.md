@@ -1,12 +1,12 @@
 ## Quaternion Math for Calcit
 
-### 0.2.19 候选：使用者影响
+### 0.2.20 候选：使用者影响
 
-本候选配对正式 Calcit CLI / `@calcit/procs` **0.32.1**；消费者需同步工具链并重新生成 JS。仍使用 0.32.0 的消费者可保留已发布 0.2.18，旧 tag 不移动；本候选不代表已发布 Git tag。
+本候选配对正式 Calcit CLI / `@calcit/procs` **0.34.0**；消费者需同步工具链并重新生成 JS，正式 tag 发布前不要提前引用本候选。仍使用旧工具链的消费者保留原精确 tag；旧 tag 不移动。
 
-本次不修改 Snapshot、数学算法、操作顺序、公开数值类型或 `q-to-js` 的 JavaScript Array / `[x, y, z, w]` 坐标合同。原 native/JS 数值断言、失败探针、零类型债务门禁和完整 strict 全部保留，不增加验证脚本或预算，不发布 npm 或部署 Demo。
+本次规范类型声明写法，保持数学算法、求值与归约顺序、公开数值合同和 `q-to-js` 的 JavaScript Array / `[x, y, z, w]` 坐标合同。原 native/JS 数值断言、故意失败探针、零类型债务门禁和完整 strict 全部保留，不增加验证脚本或预算，不发布 npm 或部署 Demo。
 
-此前六处 List 归约迁移（c*、c+、q+、q-、v+、v-）继续保留。0.32.0 的 native 容器身份语义变化不涉及本项目现有调用；实际范围仍以原数学测试和正反断言验收为准。
+此前六处 List 归约迁移（c*、c+、q+、q-、v+、v-）继续保留。此库的数值与名义类型已是具体合同，不为升级强行引入 union 或 Dynamic。
 
 TODO.
 
@@ -90,7 +90,7 @@ match q $
 0.2.15 已发布标签仍保持 alpha.5 配对的原内容，不覆盖旧 tag；本轮源码清理不覆盖
 已发布的 0.2.16 标签，也不单独抢先发版。仍使用 Calcit 0.30.0 的消费者保留模块 0.2.14。
 
-Current source pairs the compiler and `@calcit/procs` at formal 0.32.1. Linux CI verifies
+Current source pairs the compiler and `@calcit/procs` at formal 0.34.0. Linux CI verifies
 the paired toolchain; it is not an all-platform runtime guarantee. Use Node 24
 and Yarn 4.18.0 with the node-modules linker.
 
