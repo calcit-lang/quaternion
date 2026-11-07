@@ -56,11 +56,11 @@
           :code $ quote $ defn c* (& xs)
             .foldl xs (complex 1 0) &c*
           :examples $ []
-          :schema $ quote $ Fn & quaternion.complex/Complex (-> quaternion.complex/Complex)
+          :schema $ quote $ Fn (& quaternion.complex/Complex) (-> quaternion.complex/Complex)
         'c+ $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defn c+ (x & xs) (.foldl xs x &c+)
           :examples $ []
-          :schema $ quote $ Fn quaternion.complex/Complex & quaternion.complex/Complex (-> quaternion.complex/Complex)
+          :schema $ quote $ Fn quaternion.complex/Complex (& quaternion.complex/Complex) (-> quaternion.complex/Complex)
         'c-conjugate $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defn c-conjugate (a)
             match a $
@@ -148,11 +148,11 @@
           :code $ quote $ defn q+ (& xs)
             .foldl xs (quaternion 0 0 0 0) &q+
           :examples $ []
-          :schema $ quote $ Fn & quaternion.core/Quaternion (-> quaternion.core/Quaternion)
+          :schema $ quote $ Fn (& quaternion.core/Quaternion) (-> quaternion.core/Quaternion)
         'q- $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defn q- (x & xs) (.foldl xs x &q-)
           :examples $ []
-          :schema $ quote $ Fn quaternion.core/Quaternion & quaternion.core/Quaternion (-> quaternion.core/Quaternion)
+          :schema $ quote $ Fn quaternion.core/Quaternion (& quaternion.core/Quaternion) (-> quaternion.core/Quaternion)
         'q-conjugate $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defn q-conjugate (a)
             match a $
@@ -349,11 +349,11 @@
           :code $ quote $ defn v+ (& xs)
             .foldl xs (v3 0 0 0) &v+
           :examples $ []
-          :schema $ quote $ Fn & quaternion.vector/V3 (-> quaternion.vector/V3)
+          :schema $ quote $ Fn (& quaternion.vector/V3) (-> quaternion.vector/V3)
         'v- $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defn v- (x & xs) (.foldl xs x &v-)
           :examples $ []
-          :schema $ quote $ Fn quaternion.vector/V3 & quaternion.vector/V3 (-> quaternion.vector/V3)
+          :schema $ quote $ Fn quaternion.vector/V3 (& quaternion.vector/V3) (-> quaternion.vector/V3)
         'v-cross $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defn v-cross (v1 v2)
             match v1 $
