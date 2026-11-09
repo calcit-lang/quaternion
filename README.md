@@ -1,8 +1,8 @@
 ## Quaternion Math for Calcit
 
-### 0.2.23 候选：Calcit 0.37.0
+### 0.2.24 候选：Calcit 0.38.0
 
-CLI / `@calcit/procs` 配对正式 **0.37.0**。0.37 移除了裸写的 rest 类型 `& T`，`edit format` 把 `quaternion.complex` 等 6 处 schema 改为 `(& T)` 分组写法，数学实现与公开合同不变。仍用 0.35.1 的消费者保留 0.2.22（它声明 0.35.1，0.36.0 工具链下 `caps verify --toolchain` 会拒绝，未验证该组合）。
+CLI / `@calcit/procs` 配对正式 **0.38.0**。0.37 移除了裸写的 rest 类型 `& T`，`edit format` 把 `quaternion.complex` 等 6 处 schema 改为 `(& T)` 分组写法，数学实现与公开合同不变。使用 0.37.0 的消费者可继续使用 0.2.23。仍用 0.35.1 的消费者保留 0.2.22（它声明 0.35.1，0.36.0 工具链下 `caps verify --toolchain` 会拒绝，未验证该组合）。
 
 ### 历史 0.2.22：使用者影响
 
@@ -94,7 +94,7 @@ match q $
 0.2.15 已发布标签仍保持 alpha.5 配对的原内容，不覆盖旧 tag；本轮源码清理不覆盖
 已发布的 0.2.16 标签，也不单独抢先发版。仍使用 Calcit 0.30.0 的消费者保留模块 0.2.14。
 
-Current source pairs the compiler and `@calcit/procs` at formal 0.37.0. Linux CI verifies
+Current source pairs the compiler and `@calcit/procs` at formal 0.38.0. Linux CI verifies
 the paired toolchain; it is not an all-platform runtime guarantee. Use Node 24
 and Yarn 4.18.0 with the node-modules linker.
 
