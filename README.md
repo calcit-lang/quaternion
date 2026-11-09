@@ -1,8 +1,8 @@
 ## Quaternion Math for Calcit
 
-### 0.2.23 候选：Calcit 0.38.0
+### 0.2.24 候选：Calcit 0.38.0
 
-CLI / `@calcit/procs` 配对正式 **0.38.0**。0.37 移除了裸写的 rest 类型 `& T`，`edit format` 把 `quaternion.complex` 等 6 处 schema 改为 `(& T)` 分组写法，数学实现与公开合同不变。仍用 0.35.1 的消费者保留 0.2.22（它声明 0.35.1，0.36.0 工具链下 `caps verify --toolchain` 会拒绝，未验证该组合）。
+CLI / `@calcit/procs` 配对正式 **0.38.0**。0.37 移除了裸写的 rest 类型 `& T`，`edit format` 把 `quaternion.complex` 等 6 处 schema 改为 `(& T)` 分组写法，数学实现与公开合同不变。使用 0.37.0 的消费者可继续使用 0.2.23。仍用 0.35.1 的消费者保留 0.2.22（它声明 0.35.1，0.36.0 工具链下 `caps verify --toolchain` 会拒绝，未验证该组合）。
 
 ### 历史 0.2.22：使用者影响
 
