@@ -1,8 +1,8 @@
 ## Quaternion Math for Calcit
 
-### 0.2.25 候选 / Calcit 0.40.0
+### 0.2.25 候选 / Calcit 0.41.0
 
-升级时同时安装正式 Calcit CLI 和 `@calcit/procs` 0.40.0，重新生成 JS。数学实现和公开类型可沿用。
+升级时同时安装正式 Calcit CLI 和 `@calcit/procs` 0.41.0，重新生成 JS。数学实现和公开类型可沿用。
 
 ### 历史 0.2.24 / Calcit 0.38.0
 
@@ -98,7 +98,7 @@ match q $
 0.2.15 已发布标签仍保持 alpha.5 配对的原内容，不覆盖旧 tag；本轮源码清理不覆盖
 已发布的 0.2.16 标签，也不单独抢先发版。仍使用 Calcit 0.30.0 的消费者保留模块 0.2.14。
 
-Current source pairs the compiler and `@calcit/procs` at formal 0.40.0. Linux CI verifies
+Current source pairs the compiler and `@calcit/procs` at formal 0.41.0. Linux CI verifies
 the paired toolchain; it is not an all-platform runtime guarantee. Use Node 24
 and Yarn 4.18.0 with the node-modules linker.
 
