@@ -29,7 +29,7 @@
                   &- (&* x0 x1) (&* y0 y1)
                   &+ (&* x0 y1) (&* x1 y0)
           :examples $ []
-          :schema $ quote $ Fn quaternion.complex/Complex quaternion.complex/Complex (-> quaternion.complex/Complex)
+          :schema $ quote $ Fn Complex Complex (-> Complex)
         '&c+ $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defn &c+ (a b)
             match a $
@@ -38,7 +38,7 @@
                 :complex x1 y1
                 complex (&+ x0 x1) (&+ y0 y1)
           :examples $ []
-          :schema $ quote $ Fn quaternion.complex/Complex quaternion.complex/Complex (-> quaternion.complex/Complex)
+          :schema $ quote $ Fn Complex Complex (-> Complex)
         '&c- $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defn &c- (a b)
             match a $
@@ -47,7 +47,7 @@
                 :complex x1 y1
                 complex (&- x0 x1) (&- y0 y1)
           :examples $ []
-          :schema $ quote $ Fn quaternion.complex/Complex quaternion.complex/Complex (-> quaternion.complex/Complex)
+          :schema $ quote $ Fn Complex Complex (-> Complex)
         'Complex $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defenum Complex (:complex Number Number)
           :examples $ []
@@ -56,43 +56,43 @@
           :code $ quote $ defn c* (& xs)
             .foldl xs (complex 1 0) &c*
           :examples $ []
-          :schema $ quote $ Fn (& quaternion.complex/Complex) (-> quaternion.complex/Complex)
+          :schema $ quote $ Fn (& Complex) (-> Complex)
         'c+ $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defn c+ (x & xs) (.foldl xs x &c+)
           :examples $ []
-          :schema $ quote $ Fn quaternion.complex/Complex (& quaternion.complex/Complex) (-> quaternion.complex/Complex)
+          :schema $ quote $ Fn Complex (& Complex) (-> Complex)
         'c-conjugate $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defn c-conjugate (a)
             match a $
               :complex x y
               complex x $ &- 0 y
           :examples $ []
-          :schema $ quote $ Fn quaternion.complex/Complex (-> quaternion.complex/Complex)
+          :schema $ quote $ Fn Complex (-> Complex)
         'c-length $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defn c-length (v)
             match v $
               :complex x y
               sqrt $ &+ (&* x x) (&* y y)
           :examples $ []
-          :schema $ quote $ Fn quaternion.complex/Complex (-> Number)
+          :schema $ quote $ Fn Complex (-> Number)
         'c-length2 $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defn c-length2 (v)
             match v $
               :complex x y
               &+ (&* x x) (&* y y)
           :examples $ []
-          :schema $ quote $ Fn quaternion.complex/Complex (-> Number)
+          :schema $ quote $ Fn Complex (-> Number)
         'c-scale $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defn c-scale (v n)
             match v $
               :complex x y
               complex (&* n x) (&* n y)
           :examples $ []
-          :schema $ quote $ Fn quaternion.complex/Complex Number (-> quaternion.complex/Complex)
+          :schema $ quote $ Fn Complex Number (-> Complex)
         'complex $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defn complex (x y) (Complex :complex x y)
           :examples $ []
-          :schema $ quote $ Fn Number Number (-> quaternion.complex/Complex)
+          :schema $ quote $ Fn Number Number (-> Complex)
       :ns $ %{} 'NsEntry (:doc |)
         :code $ quote $ ns quaternion.complex
     'quaternion.core $ %{} 'FileEntry
@@ -121,7 +121,7 @@
                     &- $ &* y1 x2
                     &+ $ &* z1 w2
           :examples $ []
-          :schema $ quote $ Fn quaternion.core/Quaternion quaternion.core/Quaternion (-> quaternion.core/Quaternion)
+          :schema $ quote $ Fn Quaternion Quaternion (-> Quaternion)
         '&q+ $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defn &q+ (a b)
             match a $
@@ -130,7 +130,7 @@
                 :quaternion w1 x1 y1 z1
                 quaternion (&+ w w1) (&+ x x1) (&+ y y1) (&+ z z1)
           :examples $ []
-          :schema $ quote $ Fn quaternion.core/Quaternion quaternion.core/Quaternion (-> quaternion.core/Quaternion)
+          :schema $ quote $ Fn Quaternion Quaternion (-> Quaternion)
         '&q- $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defn &q- (a b)
             match a $
@@ -139,7 +139,7 @@
                 :quaternion w1 x1 y1 z1
                 quaternion (&- w w1) (&- x x1) (&- y y1) (&- z z1)
           :examples $ []
-          :schema $ quote $ Fn quaternion.core/Quaternion quaternion.core/Quaternion (-> quaternion.core/Quaternion)
+          :schema $ quote $ Fn Quaternion Quaternion (-> Quaternion)
         'Quaternion $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defenum Quaternion (:quaternion Number Number Number Number)
           :examples $ []
@@ -148,25 +148,25 @@
           :code $ quote $ defn q+ (& xs)
             .foldl xs (quaternion 0 0 0 0) &q+
           :examples $ []
-          :schema $ quote $ Fn (& quaternion.core/Quaternion) (-> quaternion.core/Quaternion)
+          :schema $ quote $ Fn (& Quaternion) (-> Quaternion)
         'q- $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defn q- (x & xs) (.foldl xs x &q-)
           :examples $ []
-          :schema $ quote $ Fn quaternion.core/Quaternion (& quaternion.core/Quaternion) (-> quaternion.core/Quaternion)
+          :schema $ quote $ Fn Quaternion (& Quaternion) (-> Quaternion)
         'q-conjugate $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defn q-conjugate (a)
             match a $
               :quaternion w x y z
               quaternion w (&- 0 x) (&- 0 y) (&- 0 z)
           :examples $ []
-          :schema $ quote $ Fn quaternion.core/Quaternion (-> quaternion.core/Quaternion)
+          :schema $ quote $ Fn Quaternion (-> Quaternion)
         'q-from-v3 $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defn q-from-v3 (v)
             match v $
               :v3 x y z
               quaternion 0 x y z
           :examples $ []
-          :schema $ quote $ Fn quaternion.vector/V3 (-> quaternion.core/Quaternion)
+          :schema $ quote $ Fn quaternion.vector/V3 (-> Quaternion)
         'q-inverse $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defn q-inverse (a)
             let
@@ -174,7 +174,7 @@
               if (&= l 0) (eprintln "|length is zero:" a)
               q-scale (q-conjugate a) (&/ 1 l)
           :examples $ []
-          :schema $ quote $ Fn quaternion.core/Quaternion (-> quaternion.core/Quaternion)
+          :schema $ quote $ Fn Quaternion (-> Quaternion)
         'q-length $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defn q-length (a)
             match a $
@@ -184,7 +184,7 @@
                 &+ $ &* z z
                 &+ $ &* w w
           :examples $ []
-          :schema $ quote $ Fn quaternion.core/Quaternion (-> Number)
+          :schema $ quote $ Fn Quaternion (-> Number)
         'q-length2 $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defn q-length2 (a)
             match a $
@@ -194,21 +194,21 @@
                 &+ $ &* z z
                 &+ $ &* w w
           :examples $ []
-          :schema $ quote $ Fn quaternion.core/Quaternion (-> Number)
+          :schema $ quote $ Fn Quaternion (-> Number)
         'q-scale $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defn q-scale (v n)
             match v $
               :quaternion w x y z
               quaternion (&* n w) (&* n x) (&* n y) (&* n z)
           :examples $ []
-          :schema $ quote $ Fn quaternion.core/Quaternion Number (-> quaternion.core/Quaternion)
+          :schema $ quote $ Fn Quaternion Number (-> Quaternion)
         'q-to-js $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defn q-to-js (self)
             match self $
               :quaternion s x y z
               js-array x y z s
           :examples $ []
-          :schema $ quote $ Fn quaternion.core/Quaternion (-> JsObject) (:features :js-ffi)
+          :schema $ quote $ Fn Quaternion (-> JsObject) (:features :js-ffi)
         'q-to-v3 $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defn q-to-v3 (self)
             match self $
@@ -217,11 +217,11 @@
                 if (not= s 0) (eprintln "|s is not zero in quaternion when converting")
                 v3 x y z
           :examples $ []
-          :schema $ quote $ Fn quaternion.core/Quaternion (-> quaternion.vector/V3)
+          :schema $ quote $ Fn Quaternion (-> quaternion.vector/V3)
         'quaternion $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defn quaternion (s x y z) (Quaternion :quaternion s x y z)
           :examples $ []
-          :schema $ quote $ Fn Number Number Number Number (-> quaternion.core/Quaternion)
+          :schema $ quote $ Fn Number Number Number Number (-> Quaternion)
       :ns $ %{} 'NsEntry (:doc |)
         :code $ quote $ ns quaternion.core
           :require $ quaternion.vector :refer $ v3
@@ -331,7 +331,7 @@
                 :v3 x2 y2 z2
                 v3 (&+ x x2) (&+ y y2) (&+ z z2)
           :examples $ []
-          :schema $ quote $ Fn quaternion.vector/V3 quaternion.vector/V3 (-> quaternion.vector/V3)
+          :schema $ quote $ Fn V3 V3 (-> V3)
         '&v- $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defn &v- (a b)
             match a $
@@ -340,7 +340,7 @@
                 :v3 x2 y2 z2
                 v3 (&- x x2) (&- y y2) (&- z z2)
           :examples $ []
-          :schema $ quote $ Fn quaternion.vector/V3 quaternion.vector/V3 (-> quaternion.vector/V3)
+          :schema $ quote $ Fn V3 V3 (-> V3)
         'V3 $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defenum V3 (:v3 Number Number Number)
           :examples $ []
@@ -349,11 +349,11 @@
           :code $ quote $ defn v+ (& xs)
             .foldl xs (v3 0 0 0) &v+
           :examples $ []
-          :schema $ quote $ Fn (& quaternion.vector/V3) (-> quaternion.vector/V3)
+          :schema $ quote $ Fn (& V3) (-> V3)
         'v- $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defn v- (x & xs) (.foldl xs x &v-)
           :examples $ []
-          :schema $ quote $ Fn quaternion.vector/V3 (& quaternion.vector/V3) (-> quaternion.vector/V3)
+          :schema $ quote $ Fn V3 (& V3) (-> V3)
         'v-cross $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defn v-cross (v1 v2)
             match v1 $
@@ -365,7 +365,7 @@
                   &- (&* x2 z1) (&* x1 z2)
                   &- (&* x1 y2) (&* x2 y1)
           :examples $ []
-          :schema $ quote $ Fn quaternion.vector/V3 quaternion.vector/V3 (-> quaternion.vector/V3)
+          :schema $ quote $ Fn V3 V3 (-> V3)
         'v-dot $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defn v-dot (v1 v2)
             match v1 $
@@ -376,7 +376,7 @@
                   &+ $ &* y1 y2
                   &+ $ &* z1 z2
           :examples $ []
-          :schema $ quote $ Fn quaternion.vector/V3 quaternion.vector/V3 (-> Number)
+          :schema $ quote $ Fn V3 V3 (-> Number)
         'v-length $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defn v-length (a)
             match a $
@@ -385,7 +385,7 @@
                 &+ $ &* y y
                 &+ $ &* z z
           :examples $ []
-          :schema $ quote $ Fn quaternion.vector/V3 (-> Number)
+          :schema $ quote $ Fn V3 (-> Number)
         'v-normalize $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defn v-normalize (v)
             match v $
@@ -397,7 +397,7 @@
                 if (&= length 0) (eprintln "|Unexpected zero length:" length)
                 v-scale v $ &/ 1 length
           :examples $ []
-          :schema $ quote $ Fn quaternion.vector/V3 (-> quaternion.vector/V3)
+          :schema $ quote $ Fn V3 (-> V3)
         'v-reflect $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defn v-reflect (a base)
             let
@@ -407,18 +407,18 @@
                 b $ &v- a a-shadow
               &v- a-shadow b
           :examples $ []
-          :schema $ quote $ Fn quaternion.vector/V3 quaternion.vector/V3 (-> quaternion.vector/V3)
+          :schema $ quote $ Fn V3 V3 (-> V3)
         'v-scale $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defn v-scale (v n)
             match v $
               :v3 x y z
               v3 (&* n x) (&* n y) (&* n z)
           :examples $ []
-          :schema $ quote $ Fn quaternion.vector/V3 Number (-> quaternion.vector/V3)
+          :schema $ quote $ Fn V3 Number (-> V3)
         'v3 $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defn v3 (x y z) (V3 :v3 x y z)
           :examples $ []
-          :schema $ quote $ Fn Number Number Number (-> quaternion.vector/V3)
+          :schema $ quote $ Fn Number Number Number (-> V3)
       :ns $ %{} 'NsEntry (:doc |)
         :code $ quote $ ns quaternion.vector
           :require $ quaternion.complex :refer $ complex
