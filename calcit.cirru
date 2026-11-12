@@ -174,7 +174,7 @@
               if (&= l 0) (eprintln "|length is zero:" a)
               q-scale (q-conjugate a) (&/ 1 l)
           :examples $ []
-          :schema $ quote $ Fn Quaternion (-> Quaternion)
+          :schema $ quote $ Fn Quaternion (-> Quaternion) (:features :io)
         'q-length $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defn q-length (a)
             match a $
@@ -217,7 +217,7 @@
                 if (not= s 0) (eprintln "|s is not zero in quaternion when converting")
                 v3 x y z
           :examples $ []
-          :schema $ quote $ Fn Quaternion (-> quaternion.vector/V3)
+          :schema $ quote $ Fn Quaternion (-> quaternion.vector/V3) (:features :io)
         'quaternion $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defn quaternion (s x y z) (Quaternion :quaternion s x y z)
           :examples $ []
@@ -234,15 +234,15 @@
         'main! $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defn main! () (run-tests)
           :examples $ []
-          :schema $ quote $ Fn (-> Unit)
+          :schema $ quote $ Fn (-> Unit) (:features :io)
         'reload! $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defn reload! () (println |reload...) (run-tests)
           :examples $ []
-          :schema $ quote $ Fn (-> Unit)
+          :schema $ quote $ Fn (-> Unit) (:features :io)
         'run-tests $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defn run-tests () (test-add) (test-v-scale) (test-multiply) (test-complex) (test-v3) (test-quaternion)
           :examples $ []
-          :schema $ quote $ Fn (-> Unit)
+          :schema $ quote $ Fn (-> Unit) (:features :io)
         'test-add $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defn test-add () "|multiply quaternion"
             is $ = (quaternion -60 12 30 24)
@@ -290,7 +290,7 @@
                 is $ = (quaternion 6 6 6 6)
                   q+ (quaternion 1 1 1 1) (quaternion 2 2 2 2) (quaternion 3 3 3 3)
           :examples $ []
-          :schema $ quote $ Fn (-> Unit)
+          :schema $ quote $ Fn (-> Unit) (:features :io)
         'test-v-scale $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defn test-v-scale () |v-scale
             is $ =
@@ -397,7 +397,7 @@
                 if (&= length 0) (eprintln "|Unexpected zero length:" length)
                 v-scale v $ &/ 1 length
           :examples $ []
-          :schema $ quote $ Fn V3 (-> V3)
+          :schema $ quote $ Fn V3 (-> V3) (:features :io)
         'v-reflect $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defn v-reflect (a base)
             let
@@ -407,7 +407,7 @@
                 b $ &v- a a-shadow
               &v- a-shadow b
           :examples $ []
-          :schema $ quote $ Fn V3 V3 (-> V3)
+          :schema $ quote $ Fn V3 V3 (-> V3) (:features :io)
         'v-scale $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defn v-scale (v n)
             match v $
