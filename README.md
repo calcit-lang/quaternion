@@ -1,8 +1,9 @@
 ## Quaternion Math for Calcit
 
-### 0.2.25 候选 / Calcit 0.44.0
+### 0.2.26 候选 / Calcit 0.44.0
 
 升级时同时安装正式 Calcit CLI 和 `@calcit/procs` 0.44.0，重新生成 JS。数学实现和公开类型可沿用。
+已发布的 0.2.25 tag 配对 Calcit 0.40.0，继续保留原 tag；0.2.26 在正式 tag 发布前仍为候选。
 
 ### 历史 0.2.24 / Calcit 0.38.0
 
